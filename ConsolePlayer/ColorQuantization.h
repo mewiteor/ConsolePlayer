@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -24,22 +24,22 @@
 /*!
  * \class CColorQuantization
  *
- * \brief ÓÃ°Ë²æÊ÷Ëã·¨½øĞĞÉ«²ÊÁ¿»¯(24bpp->4bpp)
+ * \brief ç”¨å…«å‰æ ‘ç®—æ³•è¿›è¡Œè‰²å½©é‡åŒ–(24bpp->4bpp)
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CColorQuantization
 {
-	typedef std::set<unsigned int> set_type;	// setÀàĞÍ
-	struct Node	// ½áµã½á¹¹
+	typedef std::set<unsigned int> set_type;	// setç±»å‹
+	struct Node	// ç»“ç‚¹ç»“æ„
 	{
-		unsigned long long red;		// ºìÉ«×ÜÊı
-		unsigned long long green;	// ÂÌÉ«×ÜÊı
-		unsigned long long blue;	// À¶É«×ÜÊı
-		unsigned long long count;	// ¾­¹ı½áµã¼ÆÊı
-		unsigned int index;			// µ÷É«°åË÷Òı
-		bool leaf;					// ÊÇ·ñÎªÒ¶×Ó½áµã
+		unsigned long long red;		// çº¢è‰²æ€»æ•°
+		unsigned long long green;	// ç»¿è‰²æ€»æ•°
+		unsigned long long blue;	// è“è‰²æ€»æ•°
+		unsigned long long count;	// ç»è¿‡ç»“ç‚¹è®¡æ•°
+		unsigned int index;			// è°ƒè‰²æ¿ç´¢å¼•
+		bool leaf;					// æ˜¯å¦ä¸ºå¶å­ç»“ç‚¹
 	};
 public:
 
@@ -49,8 +49,8 @@ public:
 	// Access:      public 
 	// Returns:     
 	// Qualifier:  
-	// Parameter:   unsigned int max£¬×î¶àÑÕÉ«Êı
-	// Description: ¹¹ÔìÉ«²ÊÁ¿»¯¶ÔÏó
+	// Parameter:   unsigned int maxï¼Œæœ€å¤šé¢œè‰²æ•°
+	// Description: æ„é€ è‰²å½©é‡åŒ–å¯¹è±¡
 	//************************************
 	CColorQuantization(unsigned int max);
 
@@ -60,7 +60,7 @@ public:
 	// Access:      public 
 	// Returns:     
 	// Qualifier:  
-	// Description: Îö¹¹É«²ÊÁ¿»¯¶ÔÏó
+	// Description: ææ„è‰²å½©é‡åŒ–å¯¹è±¡
 	//************************************
 	~CColorQuantization() {}
 
@@ -73,7 +73,7 @@ public:
 	// Parameter:   unsigned char red
 	// Parameter:   unsigned char green
 	// Parameter:   unsigned char blue
-	// Description: ²åÈëÑÕÉ«µ½°Ë²æ¶ÑÖĞ£¬²¢ÓÅ»¯¶Ñ
+	// Description: æ’å…¥é¢œè‰²åˆ°å…«å‰å †ä¸­ï¼Œå¹¶ä¼˜åŒ–å †
 	//************************************
 	void Insert(unsigned char red, unsigned char green, unsigned char blue);
 
@@ -84,7 +84,7 @@ public:
 	// Returns:     unsigned int
 	// Qualifier:  
 	// Parameter:   COLORREF colorTable[16]
-	// Description: Éú³Éµ÷É«°å
+	// Description: ç”Ÿæˆè°ƒè‰²æ¿
 	//************************************
 	unsigned int Done(COLORREF colorTable[16]);
 
@@ -97,7 +97,7 @@ public:
 	// Parameter:   unsigned char red
 	// Parameter:   unsigned char green
 	// Parameter:   unsigned char blue
-	// Description: »ñÈ¡ÑÕÉ«ÔÚµ÷É«°åÖĞµÄ×îÓÅË÷Òı
+	// Description: è·å–é¢œè‰²åœ¨è°ƒè‰²æ¿ä¸­çš„æœ€ä¼˜ç´¢å¼•
 	//************************************
 	unsigned int Get(unsigned char red, unsigned char green, unsigned char blue);
 
@@ -112,7 +112,7 @@ private:
 	// Parameter:   unsigned char red
 	// Parameter:   unsigned char green
 	// Parameter:   unsigned char blue
-	// Description: ²åÈëÑÕÉ«µ½°Ë²æ¶ÑÖĞ
+	// Description: æ’å…¥é¢œè‰²åˆ°å…«å‰å †ä¸­
 	//************************************
 	void InsertRGB(unsigned char red, unsigned char green, unsigned char blue);
 	
@@ -122,7 +122,7 @@ private:
 	// Access:      private 
 	// Returns:     void
 	// Qualifier:  
-	// Description: ¼õÉÙÑÕÉ«
+	// Description: å‡å°‘é¢œè‰²
 	//************************************
 	void Reduce();
 	
@@ -133,7 +133,7 @@ private:
 	// Returns:     unsigned short
 	// Qualifier:  
 	// Parameter:   double d
-	// Description: ¿ìËÙ¼ÆËãÒÔ2Îªµ×µÄ¶ÔÊı
+	// Description: å¿«é€Ÿè®¡ç®—ä»¥2ä¸ºåº•çš„å¯¹æ•°
 	//************************************
 	inline unsigned short fast_log2(double d)
 	{
@@ -141,10 +141,10 @@ private:
 	}
 
 private:
-	static Node m_cNodes[0111111111];	// ¾Å²ã°Ë²æ¶Ñ
-	unsigned int m_nColorCount;		// ÑÕÉ«×ÜÊı
-	const unsigned int m_nMaxCount;	// ×î¶àÑÕÉ«Êı
-	set_type m_setLeafParent;			// Ò¶×Ó½áµãµÄ¸¸½áµãµÄ¼¯ºÏ
-	unsigned int m_nDepth;				// ¶ÑµÄµ±Ç°Éî¶È
+	static Node m_cNodes[0111111111];	// ä¹å±‚å…«å‰å †
+	unsigned int m_nColorCount;		// é¢œè‰²æ€»æ•°
+	const unsigned int m_nMaxCount;	// æœ€å¤šé¢œè‰²æ•°
+	set_type m_setLeafParent;			// å¶å­ç»“ç‚¹çš„çˆ¶ç»“ç‚¹çš„é›†åˆ
+	unsigned int m_nDepth;				// å †çš„å½“å‰æ·±åº¦
 };
 

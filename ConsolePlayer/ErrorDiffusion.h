@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -26,20 +26,20 @@ typedef double _REAL;
 /*!
  * \class CErrorDiffusion
  *
- * \brief Îó²îÀ©É¢Àà
+ * \brief è¯¯å·®æ‰©æ•£ç±»
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CErrorDiffusion :
 	public CDither
 {
 public:
-	struct COLOR	// ÑÕÉ«½á¹¹
+	struct COLOR	// é¢œè‰²ç»“æ„
 	{
-		_REAL red;		// ºìÉ«ÀÛ»ıÎó²î
-		_REAL green;	// ÂÌÉ«ÀÛ»ıÎó²î
-		_REAL blue;	// À¶É«ÀÛ»ıÎó²î
+		_REAL red;		// çº¢è‰²ç´¯ç§¯è¯¯å·®
+		_REAL green;	// ç»¿è‰²ç´¯ç§¯è¯¯å·®
+		_REAL blue;	// è“è‰²ç´¯ç§¯è¯¯å·®
 
 		//************************************
 		// Method:      COLOR
@@ -202,7 +202,7 @@ public:
 	// Access:      public 
 	// Returns:     void
 	// Qualifier:  
-	// Description: ³õÊ¼»¯
+	// Description: åˆå§‹åŒ–
 	//************************************
 	void Init();
 
@@ -216,7 +216,7 @@ public:
 	// Parameter:   unsigned char green
 	// Parameter:   unsigned char blue
 	// Parameter:   size_t i
-	// Description: ·µ»Ø¼ÓÉÏÀÛ»ıÎó²îºóµÄÑÕÉ«
+	// Description: è¿”å›åŠ ä¸Šç´¯ç§¯è¯¯å·®åçš„é¢œè‰²
 	//************************************
 	COLORREF Get(unsigned char red, unsigned char green,
 		unsigned char blue, size_t i);
@@ -232,11 +232,11 @@ public:
 	// Parameter:   unsigned char blue
 	// Parameter:   size_t i
 	// Parameter:   COLORREF color
-	// Description: Îó²îÀ©É¢
+	// Description: è¯¯å·®æ‰©æ•£
 	//************************************
 	virtual void  Diffusion(unsigned char red, unsigned char green,
 		unsigned char blue, size_t i, COLORREF color) = 0 ;
 protected:
-	COLOR *m_clrErrors;	// ÀÛ»ıÎó²î
+	COLOR *m_clrErrors;	// ç´¯ç§¯è¯¯å·®
 };
 

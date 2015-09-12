@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -22,10 +22,10 @@
 /*!
  * \class CMyErrorDiffusion
  *
- * \brief ×Ô¼º¶¨ÒåµÄÎó²îÀ©É¢Ëã·¨£¬ÊÊÓÃÓÚ3x5µÄÏñËØ
+ * \brief è‡ªå·±å®šä¹‰çš„è¯¯å·®æ‰©æ•£ç®—æ³•ï¼Œé€‚ç”¨äº3x5çš„åƒç´ 
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CMyErrorDiffusion
 	:public CErrorDiffusion
@@ -65,7 +65,7 @@ public:
 	// Parameter:   unsigned char blue
 	// Parameter:   size_t i
 	// Parameter:   COLORREF color
-	// Description: Îó²îÀ©É¢
+	// Description: è¯¯å·®æ‰©æ•£
 	//				| ___ * 4 2 |
 	//				| 1 2 6 2 1 |*1/18
 	//************************************

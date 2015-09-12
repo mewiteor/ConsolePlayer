@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -21,10 +21,10 @@
  /*!
   * \class CDither
   *
-  * \brief Í¼Ïñ¶¶¶¯Àà
+  * \brief å›¾åƒæŠ–åŠ¨ç±»
   *
   * \author Mewiteor
-  * \date ¾ÅÔÂ 2015
+  * \date ä¹æœˆ 2015
   */
 class CDither
 {
@@ -38,7 +38,7 @@ public:
 	// Qualifier:  
 	// Parameter:   unsigned int width
 	// Parameter:   unsigned int height
-	// Description: ¹¹Ôì¶¶¶¯¶ÔÏó
+	// Description: æ„é€ æŠ–åŠ¨å¯¹è±¡
 	//************************************
 	CDither(unsigned int width, unsigned int height);
 
@@ -48,11 +48,11 @@ public:
 	// Access:      virtual public 
 	// Returns:     
 	// Qualifier:  
-	// Description: Îö¹¹¶¶¶¯¶ÔÏó
+	// Description: ææ„æŠ–åŠ¨å¯¹è±¡
 	//************************************
 	virtual ~CDither();
 protected:
-	const unsigned int m_nWidth;	//Í¼Ïñ¿í¶È
-	const unsigned int m_nHeight;	//Í¼Ïñ¸ß¶È
+	const unsigned int m_nWidth;	//å›¾åƒå®½åº¦
+	const unsigned int m_nHeight;	//å›¾åƒé«˜åº¦
 };
 

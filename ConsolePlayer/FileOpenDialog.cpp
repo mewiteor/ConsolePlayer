@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -39,50 +39,50 @@ CFileOpenDialog::CFileOpenDialog()
 		nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&m_pFileOpenDialog)));
 	COMDLG_FILTERSPEC rgSpec[] =
 	{
-		{ L"ËùÓĞÖ§³ÖµÄÃ½ÌåÎÄ¼ş",L"*.rm;*.rmvb;*.3gp;*.3g2;*.mpg;*.mpeg;*.mod;"
+		{ L"æ‰€æœ‰æ”¯æŒçš„åª’ä½“æ–‡ä»¶",L"*.rm;*.rmvb;*.3gp;*.3g2;*.mpg;*.mpeg;*.mod;"
 								L"*.dvr-ms;*.m2ts;*.mts;*.mov;*.qt;*.dv;*.dif;"
 								L"*.wmv;*.asf;*.vfw;*.avs;*.ts;*.h264;*.264;"
 								L"*.avi;*.amv;*.dat;*.flv;*.fli;*.gif;*.mkv;"
 								L"*.mp4;*.m4v;*.f4v;*.ogm;*.cpk;*.bik;*.vob;"
 								L"*.xv;*.yuv;" },
-		{ L"Real MediaÎÄ¼ş",L"*.rm;*.rmvb" },
-		{ L"3GPPÎÄ¼ş",L"*.3gp;*.3g2" },
-		{ L"MPEGÎÄ¼ş",L"*.mpg;*.mpeg" },
-		{ L"JVC MPEG ModÎÄ¼ş",L"*.mod" },
-		{ L"DVR-MSÎÄ¼ş",L"*.dvr-ms" },
-		{ L"MTSÎÄ¼ş",L"*.m2ts;*.mts" },
-		{ L"Quick TimeÎÄ¼ş",L"*.mov;*.qt" },
-		{ L"Digital VideoÎÄ¼ş",L"*.dv;*.dif" },
-		{ L"Windows MediaÎÄ¼ş",L"*.wmv;*.asf;*.vfw" },
-		{ L"AviSynthÎÄ¼ş",L"*.avs" },
-		{ L"TSÎÄ¼ş",L"*.ts" },
-		{ L"Raw H264Á÷",L"*.h264;*.264" },
-		{ L"AVIÎÄ¼ş",L"*.avi" },
-		{ L"AMVÎÄ¼ş",L"*.amv" },
-		{ L"DATÎÄ¼ş",L"*.dat" },
-		{ L"FLVÎÄ¼ş",L"*.flv" },
-		{ L"FLIÎÄ¼ş",L"*.fli" },
-		{ L"GIFÎÄ¼ş",L"*.gif" },
-		{ L"MKVÎÄ¼ş",L"*.mkv" },
-		{ L"MP4ÎÄ¼ş",L"*.mp4" },
-		{ L"M4VÎÄ¼ş",L"*.m4v" },
-		{ L"F4VÎÄ¼ş",L"*.f4v" },
-		{ L"OGMÎÄ¼ş",L"*.ogm" },
-		{ L"SEGA FilmÎÄ¼ş",L"*.cpk" },
-		{ L"Bink VideoÎÄ¼ş",L"*.bik" },
-		{ L"VOBÎÄ¼ş",L"*.vob" },
-		{ L"XVÎÄ¼ş",L"*.xv" },
-		{ L"YUVÎÄ¼ş",L"*.yuv" },
-		{ L"ËùÓĞÎÄ¼ş",L"*.*" }
+		{ L"Real Mediaæ–‡ä»¶",L"*.rm;*.rmvb" },
+		{ L"3GPPæ–‡ä»¶",L"*.3gp;*.3g2" },
+		{ L"MPEGæ–‡ä»¶",L"*.mpg;*.mpeg" },
+		{ L"JVC MPEG Modæ–‡ä»¶",L"*.mod" },
+		{ L"DVR-MSæ–‡ä»¶",L"*.dvr-ms" },
+		{ L"MTSæ–‡ä»¶",L"*.m2ts;*.mts" },
+		{ L"Quick Timeæ–‡ä»¶",L"*.mov;*.qt" },
+		{ L"Digital Videoæ–‡ä»¶",L"*.dv;*.dif" },
+		{ L"Windows Mediaæ–‡ä»¶",L"*.wmv;*.asf;*.vfw" },
+		{ L"AviSynthæ–‡ä»¶",L"*.avs" },
+		{ L"TSæ–‡ä»¶",L"*.ts" },
+		{ L"Raw H264æµ",L"*.h264;*.264" },
+		{ L"AVIæ–‡ä»¶",L"*.avi" },
+		{ L"AMVæ–‡ä»¶",L"*.amv" },
+		{ L"DATæ–‡ä»¶",L"*.dat" },
+		{ L"FLVæ–‡ä»¶",L"*.flv" },
+		{ L"FLIæ–‡ä»¶",L"*.fli" },
+		{ L"GIFæ–‡ä»¶",L"*.gif" },
+		{ L"MKVæ–‡ä»¶",L"*.mkv" },
+		{ L"MP4æ–‡ä»¶",L"*.mp4" },
+		{ L"M4Væ–‡ä»¶",L"*.m4v" },
+		{ L"F4Væ–‡ä»¶",L"*.f4v" },
+		{ L"OGMæ–‡ä»¶",L"*.ogm" },
+		{ L"SEGA Filmæ–‡ä»¶",L"*.cpk" },
+		{ L"Bink Videoæ–‡ä»¶",L"*.bik" },
+		{ L"VOBæ–‡ä»¶",L"*.vob" },
+		{ L"XVæ–‡ä»¶",L"*.xv" },
+		{ L"YUVæ–‡ä»¶",L"*.yuv" },
+		{ L"æ‰€æœ‰æ–‡ä»¶",L"*.*" }
 	};
 	ComThrow(m_pFileOpenDialog->SetFileTypes(_countof(rgSpec), rgSpec));
 	ComThrow(m_pFileOpenDialog->SetFileTypeIndex(0));
 	ComThrow(m_pFileOpenDialog->QueryInterface(&m_pFileDialogCustomize));
-	ComThrow(m_pFileDialogCustomize->StartVisualGroup(ID_GROUP, L"ÑÕÉ«Ä£Ê½"));
+	ComThrow(m_pFileDialogCustomize->StartVisualGroup(ID_GROUP, L"é¢œè‰²æ¨¡å¼"));
 	ComThrow(m_pFileDialogCustomize->AddRadioButtonList(ID_RADIOBUTTIONLIST));
-	ComThrow(m_pFileDialogCustomize->AddControlItem(ID_RADIOBUTTIONLIST, ColorType::MONO, L"ºÚ°×"));
-	ComThrow(m_pFileDialogCustomize->AddControlItem(ID_RADIOBUTTIONLIST, ColorType::STANDARD, L"±ê×¼"));
-	ComThrow(m_pFileDialogCustomize->AddControlItem(ID_RADIOBUTTIONLIST, ColorType::AUTO, L"×Ô¶¯"));
+	ComThrow(m_pFileDialogCustomize->AddControlItem(ID_RADIOBUTTIONLIST, ColorType::MONO, L"é»‘ç™½"));
+	ComThrow(m_pFileDialogCustomize->AddControlItem(ID_RADIOBUTTIONLIST, ColorType::STANDARD, L"æ ‡å‡†"));
+	ComThrow(m_pFileDialogCustomize->AddControlItem(ID_RADIOBUTTIONLIST, ColorType::AUTO, L"è‡ªåŠ¨"));
 	ComThrow(m_pFileDialogCustomize->EndVisualGroup());
 	ComThrow(m_pFileDialogCustomize->SetSelectedControlItem(ID_RADIOBUTTIONLIST, ColorType::AUTO));
 }
@@ -121,12 +121,12 @@ void CFileOpenDialog::GetResult(char fileName[MAX_PATH], ColorType & colorType)
 	ComThrow(m_pShellItem->GetDisplayName(SIGDN::SIGDN_DESKTOPABSOLUTEPARSING, &m_lpFileName));
 	DWORD dw;
 	HRESULT hr = m_pFileDialogCustomize->GetSelectedControlItem(ID_RADIOBUTTIONLIST, &dw);
-	if (E_FAIL == hr)throw "Î´Ñ¡ÔñÑÕÉ«Ä£Ê½";
+	if (E_FAIL == hr)throw "æœªé€‰æ‹©é¢œè‰²æ¨¡å¼";
 	else if (FAILED(hr)) ThrowWin32Error(m_pFileDialogCustomize->GetSelectedControlItem, hr);
 	colorType = (ColorType)dw;
 	ComThrow(WideCharToMultiByte(CP_ACP, 0, m_lpFileName, int(wcslen(m_lpFileName) + 1), fileName, MAX_PATH, NULL, NULL));
 	if(!PathFileExistsA(fileName))
-		throw "ÎÄ¼şÃûÖĞ°üº¬Unicode×Ö·û,ÎŞ·¨´ò¿ª";
+		throw "æ–‡ä»¶åä¸­åŒ…å«Unicodeå­—ç¬¦,æ— æ³•æ‰“å¼€";
 }
 
 template <class T>

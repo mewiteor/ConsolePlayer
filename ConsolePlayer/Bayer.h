@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -22,10 +22,10 @@
 /*!
  * \class CBayer
  *
- * \brief Bayer¶¶¶¯Àà
+ * \brief BayeræŠ–åŠ¨ç±»
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CBayer :
 	public CDither
@@ -40,7 +40,7 @@ public:
 	// Qualifier:  
 	// Parameter:   unsigned int width
 	// Parameter:   unsigned int height
-	// Description: ¹¹ÔìBayer¶¶¶¯¶ÔÏó
+	// Description: æ„é€ BayeræŠ–åŠ¨å¯¹è±¡
 	//************************************
 	CBayer(unsigned int width, unsigned int height);
 
@@ -50,7 +50,7 @@ public:
 	// Access:      public 
 	// Returns:     
 	// Qualifier:  
-	// Description: Îö¹¹Bayer¶¶¶¯¶ÔÏó
+	// Description: ææ„BayeræŠ–åŠ¨å¯¹è±¡
 	//************************************
 	~CBayer();
 
@@ -60,12 +60,12 @@ public:
 	// Access:      public 
 	// Returns:     unsigned char
 	// Qualifier:  
-	// Parameter:   unsigned char alpha,256¼¶»Ò¶ÈÖµ
-	// Parameter:   size_t i,ÏñËØÔÚÍ¼ÏñÖĞµÄË÷Òı
-	// Description: ·µ»ØBayer¶¶¶¯ºóµÄ16¼¶»Ò¶ÈÖµ
+	// Parameter:   unsigned char alpha,256çº§ç°åº¦å€¼
+	// Parameter:   size_t i,åƒç´ åœ¨å›¾åƒä¸­çš„ç´¢å¼•
+	// Description: è¿”å›BayeræŠ–åŠ¨åçš„16çº§ç°åº¦å€¼
 	//************************************
 	unsigned char Get(unsigned char alpha, size_t i);
 private:
-	static const unsigned char m_nM[16];	// Bayer¶¶¶¯±í
+	static const unsigned char m_nM[16];	// BayeræŠ–åŠ¨è¡¨
 };
 

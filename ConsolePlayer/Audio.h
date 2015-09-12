@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -23,10 +23,10 @@
 /*!
  * \class CAudio
  *
- * \brief ÒôÆµ²¥·ÅÀà
+ * \brief éŸ³é¢‘æ’­æ”¾ç±»
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CAudio
 {
@@ -73,7 +73,7 @@ public:
 	// Qualifier:  
 	// Parameter:   unsigned char * buf
 	// Parameter:   size_t len
-	// Description: Ñ¹ÈëÒôÆµÊı¾İµ½dataÑ­»·¶ÓÁĞ
+	// Description: å‹å…¥éŸ³é¢‘æ•°æ®åˆ°dataå¾ªç¯é˜Ÿåˆ—
 	//************************************
 	void Push(unsigned char *buf, size_t len);
 	
@@ -83,8 +83,8 @@ public:
 	// Access:      public 
 	// Returns:     void
 	// Qualifier:  
-	// Parameter:   bool force,true:°´ESCÍË³ö,false:²¥·ÅÍêÍË³ö
-	// Description: ²¥·Å½áÊø
+	// Parameter:   bool force,true:æŒ‰ESCé€€å‡º,false:æ’­æ”¾å®Œé€€å‡º
+	// Description: æ’­æ”¾ç»“æŸ
 	//************************************
 	void Stop(bool force);
 private:
@@ -147,19 +147,19 @@ private:
 	inline bool DataEmpty() const { return m_dwStart == m_dwCur; }
 private:
 	HWAVEOUT m_hWaveOut;
-	static DATA m_cData[MAX_WAVE_DATA_COUNT];	// Ñ­»·¶ÓÁĞ£¬ÓÃÓÚ»º´æÒôÆµÊı¾İ
-	DWORD m_dwStart;		// dataÑ­»·¶ÓÁĞµÄ¶ÓÊ×
-	DWORD m_dwCur;			// ¿ªÊ¼²¥·ÅdataÑ­»·¶ÓÁĞÖĞÊı¾İµÄË÷Òı
-	DWORD m_dwEnd;			// dataÑ­»·¶ÓÁĞµÄ¶ÓÎ²
-	DWORD m_dwWaveHdrIndex;	// µ±Ç°Ê¹ÓÃµÄwaveHdrµÄË÷Òı
-	WAVEHDR m_cWaveHdr[MAX_WAVE_COUNT];	// ÓÃÓÚwaveOutWriteµÄ»º³åÇø,ÊµÏÖ¶à»º³å²¥·Å
-	DWORD m_dwCount;		// µ±Ç°ÕıÔÚ²¥·ÅµÄwaveµÄÊıÁ¿
-	HANDLE m_hDataEvent,	// Ò»¸öwave²¥·ÅÍêÊÂ¼ş
-		m_hNotFullEvent, m_hNotEmptyEvent;	// dataÑ­»·¶ÓÁĞÏà¹ØÊÂ¼ş
-	HANDLE m_hThread;		// ´ÓdataÑ­»·¶ÓÁĞ²¥·ÅÒôÆµµÄÏß³Ì
-	BOOL m_bContinue,		// ²¥·ÅÏß³ÌÊÇ·ñ¼ÌĞø
-		m_bForce;			// TRUE:°´ESCÍË³ö,FALSE:²¥·ÅÍêÍË³ö
-	bool &m_bAudioStart, &m_bVideoStart;	// Òô/ÊÓÆµÊÇ·ñÒÑ¿ªÊ¼²¥·Å
-	HANDLE m_hStartEvent;	// ¿ªÊ¼²¥·ÅÊÂ¼ş
+	static DATA m_cData[MAX_WAVE_DATA_COUNT];	// å¾ªç¯é˜Ÿåˆ—ï¼Œç”¨äºç¼“å­˜éŸ³é¢‘æ•°æ®
+	DWORD m_dwStart;		// dataå¾ªç¯é˜Ÿåˆ—çš„é˜Ÿé¦–
+	DWORD m_dwCur;			// å¼€å§‹æ’­æ”¾dataå¾ªç¯é˜Ÿåˆ—ä¸­æ•°æ®çš„ç´¢å¼•
+	DWORD m_dwEnd;			// dataå¾ªç¯é˜Ÿåˆ—çš„é˜Ÿå°¾
+	DWORD m_dwWaveHdrIndex;	// å½“å‰ä½¿ç”¨çš„waveHdrçš„ç´¢å¼•
+	WAVEHDR m_cWaveHdr[MAX_WAVE_COUNT];	// ç”¨äºwaveOutWriteçš„ç¼“å†²åŒº,å®ç°å¤šç¼“å†²æ’­æ”¾
+	DWORD m_dwCount;		// å½“å‰æ­£åœ¨æ’­æ”¾çš„waveçš„æ•°é‡
+	HANDLE m_hDataEvent,	// ä¸€ä¸ªwaveæ’­æ”¾å®Œäº‹ä»¶
+		m_hNotFullEvent, m_hNotEmptyEvent;	// dataå¾ªç¯é˜Ÿåˆ—ç›¸å…³äº‹ä»¶
+	HANDLE m_hThread;		// ä»dataå¾ªç¯é˜Ÿåˆ—æ’­æ”¾éŸ³é¢‘çš„çº¿ç¨‹
+	BOOL m_bContinue,		// æ’­æ”¾çº¿ç¨‹æ˜¯å¦ç»§ç»­
+		m_bForce;			// TRUE:æŒ‰ESCé€€å‡º,FALSE:æ’­æ”¾å®Œé€€å‡º
+	bool &m_bAudioStart, &m_bVideoStart;	// éŸ³/è§†é¢‘æ˜¯å¦å·²å¼€å§‹æ’­æ”¾
+	HANDLE m_hStartEvent;	// å¼€å§‹æ’­æ”¾äº‹ä»¶
 };
 

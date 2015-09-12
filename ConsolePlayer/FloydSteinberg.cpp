@@ -1,4 +1,4 @@
-/*
+﻿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.

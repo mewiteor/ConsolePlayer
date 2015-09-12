@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -31,10 +31,10 @@ extern "C"
 /*!
  * \class CFFMpeg
  *
- * \brief ¶Ôffmpeg½âÂëÆ÷µÄ·â×°
+ * \brief å¯¹ffmpegè§£ç å™¨çš„å°è£…
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CFFMpeg
 {
@@ -95,7 +95,7 @@ public:
 	// Qualifier:  
 	// Parameter:   int width
 	// Parameter:   int height
-	// Description: ÉèÖÃÊä³ö·Ö±æÂÊ
+	// Description: è®¾ç½®è¾“å‡ºåˆ†è¾¨ç‡
 	//************************************
 	void SetOutSize(int width, int height);
 	
@@ -107,7 +107,7 @@ public:
 	// Qualifier:   const
 	// Parameter:   int & width
 	// Parameter:   int & height
-	// Description: ·µ»ØÊäÈë·Ö±æÂÊ
+	// Description: è¿”å›è¾“å…¥åˆ†è¾¨ç‡
 	//************************************
 	void GetInSize(int &width, int &height)const;
 	

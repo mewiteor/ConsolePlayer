@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -30,24 +30,24 @@ class CBayer;
  /*!
   * \class CVideo
   *
-  * \brief ÊÓÆµ²¥·ÅÀà
+  * \brief è§†é¢‘æ’­æ”¾ç±»
   *
   * \author Mewiteor
-  * \date ¾ÅÔÂ 2015
+  * \date ä¹æœˆ 2015
   */
 class CVideo
 {
 	enum { MAX_VIDEO_DATA_COUNT = 64 };
 	struct ATTR
 	{
-		WORD* attr;					// ¿ØÖÆÌ¨ÊôĞÔ
-		COLORREF colorTable[16];	// ¿ØÖÆÌ¨µ÷É«°å
-		int64_t timestamp;			// Ê±¼ä´Á
+		WORD* attr;					// æ§åˆ¶å°å±æ€§
+		COLORREF colorTable[16];	// æ§åˆ¶å°è°ƒè‰²æ¿
+		int64_t timestamp;			// æ—¶é—´æˆ³
 	};
 	struct DATA
 	{
-		uint8_t * data;				// ÊÓÆµÊı¾İ,RGBĞòÁĞ,³¤¶ÈÎª¿ØÖÆÌ¨ÆÁÄ»Á÷×Ü³¤¶ÈµÄ3±¶
-		int64_t timestamp;			// Ê±¼ä´Á
+		uint8_t * data;				// è§†é¢‘æ•°æ®,RGBåºåˆ—,é•¿åº¦ä¸ºæ§åˆ¶å°å±å¹•æµæ€»é•¿åº¦çš„3å€
+		int64_t timestamp;			// æ—¶é—´æˆ³
 	};
 public:
 
@@ -90,7 +90,7 @@ public:
 	// Parameter:   unsigned char * buf
 	// Parameter:   size_t len
 	// Parameter:   int64_t timestamp
-	// Description: Ñ¹ÈëÊÓÆµÊı¾İµ½dataÑ­»·¶ÓÁĞ
+	// Description: å‹å…¥è§†é¢‘æ•°æ®åˆ°dataå¾ªç¯é˜Ÿåˆ—
 	//************************************
 	void Push(unsigned char *buf, size_t len, int64_t timestamp);
 
@@ -100,8 +100,8 @@ public:
 	// Access:      public 
 	// Returns:     void
 	// Qualifier:  
-	// Parameter:   bool force,true:°´ESCÍË³ö,false:²¥·ÅÍêÍË³ö
-	// Description: ²¥·Å½áÊø
+	// Parameter:   bool force,true:æŒ‰ESCé€€å‡º,false:æ’­æ”¾å®Œé€€å‡º
+	// Description: æ’­æ”¾ç»“æŸ
 	//************************************
 	void Stop(bool force);
 
@@ -207,38 +207,38 @@ private:
 	// Parameter:   short red
 	// Parameter:   short green
 	// Parameter:   short blue
-	// Description: ½«24Î»ÑÕÉ«×ª»¯Îª×î½Ó½üµÄ¿ØÖÆÌ¨Ä¬ÈÏµ÷É«°åÉÏµÄ4Î»ÑÕÉ«
+	// Description: å°†24ä½é¢œè‰²è½¬åŒ–ä¸ºæœ€æ¥è¿‘çš„æ§åˆ¶å°é»˜è®¤è°ƒè‰²æ¿ä¸Šçš„4ä½é¢œè‰²
 	//************************************
 	static WORD Convert24bppTo4bpp(short red, short green, short blue);
 
 private:
 	const CConsole &m_cConsole;
 	ColorType m_cColorType;
-	ATTR m_cAttributes[MAX_VIDEO_DATA_COUNT];		// ¿ØÖÆÌ¨ÊôĞÔÑ­»·¶ÓÁĞ
-	DWORD m_dwStartTime,		// ¿ªÊ¼²¥·ÅµÄÊ±¼ä,µ¥Î»ms
-		m_dwLastTime,			// ÉÏÒ»Ö¡µÄÊ±¼ä,µ¥Î»ms
-		m_dwLastTimeSeconds;	// ÉÏÒ»Ö¡µÄÊ±¼ä,µ¥Î»s
-	DWORD m_dwDuration;			// ÊÓÆµ×ÜÊ±³¤,µ¥Î»s
-	unsigned int m_nFrames;	// ¼ÇÂ¼Ö¡Êı,ÓÃÓÚ¼ÆËãfps
-	float m_fLastFps;			// ÉÏÒ»´Î¼ÆËã¹ıµÄfps
+	ATTR m_cAttributes[MAX_VIDEO_DATA_COUNT];		// æ§åˆ¶å°å±æ€§å¾ªç¯é˜Ÿåˆ—
+	DWORD m_dwStartTime,		// å¼€å§‹æ’­æ”¾çš„æ—¶é—´,å•ä½ms
+		m_dwLastTime,			// ä¸Šä¸€å¸§çš„æ—¶é—´,å•ä½ms
+		m_dwLastTimeSeconds;	// ä¸Šä¸€å¸§çš„æ—¶é—´,å•ä½s
+	DWORD m_dwDuration;			// è§†é¢‘æ€»æ—¶é•¿,å•ä½s
+	unsigned int m_nFrames;	// è®°å½•å¸§æ•°,ç”¨äºè®¡ç®—fps
+	float m_fLastFps;			// ä¸Šä¸€æ¬¡è®¡ç®—è¿‡çš„fps
 	CColorQuantization* m_pColorQuantization;
 	CErrorDiffusion* m_pErrorDiffusion;
 	CBayer* m_pBayer;
-	size_t m_nLength;			// ¿ØÖÆÌ¨ÆÁÄ»Á÷µÄ×Ü³¤¶È(console.GetSize().X*console.GetSize().Y)
-	bool m_bContinue,			// ²¥·ÅÏß³ÌÊÇ·ñ¼ÌĞø
-		m_bForce;				// TRUE:°´ESCÍË³ö,FALSE:²¥·ÅÍêÍË³ö
+	size_t m_nLength;			// æ§åˆ¶å°å±å¹•æµçš„æ€»é•¿åº¦(console.GetSize().X*console.GetSize().Y)
+	bool m_bContinue,			// æ’­æ”¾çº¿ç¨‹æ˜¯å¦ç»§ç»­
+		m_bForce;				// TRUE:æŒ‰ESCé€€å‡º,FALSE:æ’­æ”¾å®Œé€€å‡º
 	HANDLE m_hColorQuantizationThread, m_hWriteAttrThread;
-	DATA m_cData[MAX_VIDEO_DATA_COUNT];	// Ö¡RGBÊı¾İÑ­»·¶ÓÁĞ
-	size_t m_nDataStart,		// Ö¡RGBÊı¾İÑ­»·¶ÓÁĞµÄ¶ÓÊ×
-		m_nDataToAttrIndex,	// Ö¡RGBÊı¾İÑ­»·¶ÓÁĞµÄ¶ÓÎ²,¿ØÖÆÌ¨ÊôĞÔÑ­»·¶ÓÁĞµÄ¶ÓÊ×,ÕâÁ½¸öË÷ÒıÒ»Ö±ÊÇÏàµÈµÄ
-		m_nAttrEnd;			// ¿ØÖÆÌ¨ÊôĞÔÑ­»·¶ÓÁĞµÄ¶ÓÎ²
+	DATA m_cData[MAX_VIDEO_DATA_COUNT];	// å¸§RGBæ•°æ®å¾ªç¯é˜Ÿåˆ—
+	size_t m_nDataStart,		// å¸§RGBæ•°æ®å¾ªç¯é˜Ÿåˆ—çš„é˜Ÿé¦–
+		m_nDataToAttrIndex,	// å¸§RGBæ•°æ®å¾ªç¯é˜Ÿåˆ—çš„é˜Ÿå°¾,æ§åˆ¶å°å±æ€§å¾ªç¯é˜Ÿåˆ—çš„é˜Ÿé¦–,è¿™ä¸¤ä¸ªç´¢å¼•ä¸€ç›´æ˜¯ç›¸ç­‰çš„
+		m_nAttrEnd;			// æ§åˆ¶å°å±æ€§å¾ªç¯é˜Ÿåˆ—çš„é˜Ÿå°¾
 	HANDLE m_hDataNotEmptyEvent,
 		m_hAttrNotFullEvent,
 		m_hConvertDataToAttrEvent;
 	bool &m_bAudioStart, &m_bVideoStart;
-	HANDLE m_hStartEvent;		// ¿ªÊ¼²¥·ÅÊÂ¼ş
+	HANDLE m_hStartEvent;		// å¼€å§‹æ’­æ”¾äº‹ä»¶
 	const char* m_strPlayFilePath;
-	const COLORREF* m_pDefaultColorTable;	// Ä¬ÈÏµ÷É«°å,ÓÃÓÚColorType::MONO(ºÚ°×)¡¢ColorType::STANDARD(±ê×¼)Á½ÖÖÑÕÉ«Ä£Ê½
-	DWORD m_dwPeriodMin;	// ¼ÆÊ±¾«¶ÈµÄ×îĞ¡Öµ
+	const COLORREF* m_pDefaultColorTable;	// é»˜è®¤è°ƒè‰²æ¿,ç”¨äºColorType::MONO(é»‘ç™½)ã€ColorType::STANDARD(æ ‡å‡†)ä¸¤ç§é¢œè‰²æ¨¡å¼
+	DWORD m_dwPeriodMin;	// è®¡æ—¶ç²¾åº¦çš„æœ€å°å€¼
 };
 

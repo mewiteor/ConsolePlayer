@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -78,7 +78,7 @@ CVideo::CVideo(const CConsole &console, DWORD m_dwDuration,
 #elif CUR_MODE==MY_ERROR_DIFFUSION_MODE
 	m_pErrorDiffusion = new CMyErrorDiffusion(console.GetSize().X, console.GetSize().Y);
 #elif CUR_MODE!=NONO_MODE
-#error "Œ¥÷™µƒCUR_MODE÷µ"
+#error "Êú™Áü•ÁöÑCUR_MODEÂÄº"
 #endif
 	if (m_pErrorDiffusion)m_pErrorDiffusion->Init();
 	m_pBayer = new CBayer(console.GetSize().X, console.GetSize().Y);
@@ -130,7 +130,7 @@ void CVideo::Push(unsigned char *buf, size_t len, int64_t timestamp)
 {
 	while (DataFull())
 	{
-		DebugPrint(" ˝æ›¬˙\n");
+		DebugPrint("Êï∞ÊçÆÊª°\n");
 		WaitForSingleObject(m_hConvertDataToAttrEvent, INFINITE);
 	}
 	DebugPrint("%lld\n", timestamp);
@@ -159,13 +159,13 @@ DWORD CVideo::VideoColorQuantizationThread()
 	{
 		while (m_bContinue&&DataEmpty())
 		{
-			DebugPrint(" ˝æ›ø’\n");
+			DebugPrint("Êï∞ÊçÆÁ©∫\n");
 			WaitForSingleObject(m_hDataNotEmptyEvent, 100);
 		}
 		if (m_bForce || (!m_bContinue&&DataEmpty()))break;
 		while (AttrFull())
 		{
-			DebugPrint(" Ù–‘¬˙\n");
+			DebugPrint("Â±ûÊÄßÊª°\n");
 			WaitForSingleObject(m_hAttrNotFullEvent, 100);
 		}
 		switch (m_cColorType)
@@ -256,7 +256,7 @@ DWORD CVideo::VideoWriteAttrThread()
 	{
 		while (m_bContinue&&AttrEmpty())
 		{
-			DebugPrint(" Ù–‘ø’\n");
+			DebugPrint("Â±ûÊÄßÁ©∫\n");
 			WaitForSingleObject(m_hConvertDataToAttrEvent, INFINITE);
 		}
 		if (m_bForce || (!m_bContinue&&AttrEmpty()))break;
@@ -298,7 +298,7 @@ DWORD CVideo::VideoWriteAttrThread()
 				}
 			}
 			if (bChange)
-				CConsole::SetTitle("’˝‘⁄≤•∑≈:%s [%02lu:%02lu:%02lu/%02lu:%02lu:%02lu][%06.3ffps]",
+				CConsole::SetTitle("Ê≠£Âú®Êí≠Êîæ:%s [%02lu:%02lu:%02lu/%02lu:%02lu:%02lu][%06.3ffps]",
 					m_strPlayFilePath, m_dwLastTimeSeconds / 3600, m_dwLastTimeSeconds / 60 % 60, m_dwLastTimeSeconds % 60,
 					m_dwDuration / 3600, m_dwDuration / 60 % 60, m_dwDuration % 60, m_fLastFps);
 			if (m_cColorType == ColorType::AUTO)

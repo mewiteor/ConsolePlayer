@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -44,7 +44,7 @@ CConsole::CConsole()
 		FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, CONSOLE_TEXTMODE_BUFFER, nullptr);
 	if (INVALID_HANDLE_VALUE == m_hNewOut)Win32Throw(CreateConsoleScreenBuffer);
 	TestWin32Throw(SetConsoleActiveScreenBuffer(m_hNewOut));
-	// ×îĞ¡µÄµãÕó×ÖÌå
+	// æœ€å°çš„ç‚¹é˜µå­—ä½“
 	CONSOLE_FONT_INFOEX cfiex =
 	{
 		sizeof(CONSOLE_FONT_INFOEX),
@@ -62,7 +62,7 @@ CConsole::CConsole()
 	TestWin32Throw(GetWindowPlacement(GetConsoleWindow(), &wp));
 	m_dwOldShowStatus = wp.showCmd;
 	if (wp.showCmd != SW_MAXIMIZE)
-		ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);	// ×î´ó»¯
+		ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);	// æœ€å¤§åŒ–
 	CONSOLE_SCREEN_BUFFER_INFOEX csbiex = { sizeof(CONSOLE_SCREEN_BUFFER_INFOEX) };
 	TestWin32Throw(GetConsoleScreenBufferInfoEx(m_hNewOut, &csbiex));
 	TestWin32Throw(memcpy(&m_oldCsbiex, &csbiex, sizeof csbiex));
@@ -71,10 +71,10 @@ CConsole::CConsole()
 	m_crSize = csbiex.dwSize = max;
 	m_dwLength = m_crSize.X*m_crSize.Y;
 	csbiex.srWindow = SMALL_RECT{ 0,0,csbiex.dwSize.X,csbiex.dwSize.Y };
-	TestWin32Throw(SetConsoleScreenBufferInfoEx(m_hNewOut, &csbiex)); // ÉèÎª×î´óµÄ´óĞ¡
+	TestWin32Throw(SetConsoleScreenBufferInfoEx(m_hNewOut, &csbiex)); // è®¾ä¸ºæœ€å¤§çš„å¤§å°
 	m_bSetCsbi = true;
 	CONSOLE_CURSOR_INFO cci = { sizeof(CONSOLE_CURSOR_INFO) };
-	TestWin32Throw(SetConsoleCursorInfo(m_hNewOut, &cci));	// Òş²Ø¹â±ê
+	TestWin32Throw(SetConsoleCursorInfo(m_hNewOut, &cci));	// éšè—å…‰æ ‡
 	GetMaxHeight();
 }
 

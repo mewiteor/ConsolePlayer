@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -22,10 +22,10 @@
 /*!
  * \class CStucki
  *
- * \brief StuckiËã·¨
+ * \brief Stuckiç®—æ³•
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CStucki :
 	public CErrorDiffusion
@@ -65,7 +65,7 @@ public:
 	// Parameter:   unsigned char blue
 	// Parameter:   size_t i
 	// Parameter:   COLORREF color
-	// Description: Îó²îÀ©É¢
+	// Description: è¯¯å·®æ‰©æ•£
 	//				| ___ * 8 4 |
 	//				| 2 4 8 4 2 |*1/42
 	//				| 1 2 4 2 1 |

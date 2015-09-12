@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -109,12 +109,12 @@ void CColorQuantization::Reduce()
 	auto it = m_setLeafParent.rbegin();
 	unsigned int max_index = *it;
 
-	// ÀàËÆÓÚ 0111...111ÕâÑùµÄ°Ë½øÖÆÊı
+	// ç±»ä¼¼äº 0111...111è¿™æ ·çš„å…«è¿›åˆ¶æ•°
 	unsigned int min_index =
 		((1 << (fast_log2(max_index - (max_index >> 3)) / 3 * 3 + 3)) - 1) / 7;
 	unsigned long long min_count = m_cNodes[max_index].count;
 	decltype(it) mit = it;
-	while (++it != m_setLeafParent.rend())	// ÕÒcount×îĞ¡µÄm_setLeafParent½áµã
+	while (++it != m_setLeafParent.rend())	// æ‰¾countæœ€å°çš„m_setLeafParentç»“ç‚¹
 	{
 		auto t = *it;
 		if (t < min_index)
@@ -125,7 +125,7 @@ void CColorQuantization::Reduce()
 			mit = it;
 		}
 	}
-	auto index = *mit;	// count×îĞ¡µÄm_setLeafParent½áµãµÄË÷Òı
+	auto index = *mit;	// countæœ€å°çš„m_setLeafParentç»“ç‚¹çš„ç´¢å¼•
 	m_cNodes[index].leaf = true;
 	for (unsigned int j = (index << 3) + 1, i = j + 8; j < i; ++j)
 		if (m_cNodes[j].count)

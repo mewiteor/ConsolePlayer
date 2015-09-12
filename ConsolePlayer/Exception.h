@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -22,36 +22,36 @@
 #include <cerrno>
 #include <Strsafe.h>
 
-// Å×³öWin32Òì³£
+// æŠ›å‡ºWin32å¼‚å¸¸
 #define Win32Throw(__fun__) throw CException(__FILE__,__LINE__,#__fun__,GetLastError())
 
-// Å×³öÖ¸¶¨Win32Òì³£
+// æŠ›å‡ºæŒ‡å®šWin32å¼‚å¸¸
 #define ThrowWin32Error(__fun__,__err__) throw CException(__FILE__,__LINE__,#__fun__,DWORD(__err__))
 
-// Å×³öÖ¸¶¨C±ê×¼´íÎóÒì³£
+// æŠ›å‡ºæŒ‡å®šCæ ‡å‡†é”™è¯¯å¼‚å¸¸
 #define ThrowCError(__fun__,__err__) throw CException(__FILE__,__LINE__,#__fun__,errno_t(__err__))
 
-// Å×³öÖ¸¶¨ÎÄ±¾ĞÅÏ¢´íÎóÒì³£
+// æŠ›å‡ºæŒ‡å®šæ–‡æœ¬ä¿¡æ¯é”™è¯¯å¼‚å¸¸
 #define ThrowMsgError(__msg__) throw CException(__FILE__,__LINE__,nullptr,reinterpret_cast<const char*>(__msg__))
 
-// Å×³öÖ¸¶¨ÎÄ±¾ĞÅÏ¢´íÎóÒì³£
+// æŠ›å‡ºæŒ‡å®šæ–‡æœ¬ä¿¡æ¯é”™è¯¯å¼‚å¸¸
 #define ThrowFunMsgError(__fun__,__msg__) throw CException(__FILE__,__LINE__,#__fun__,reinterpret_cast<const char*>(__msg__))
 
-// ²âÊÔWin32API,ÈôÎ´µ÷ÓÃ³É¹¦,ÔòÅ×³öÒì³£
+// æµ‹è¯•Win32API,è‹¥æœªè°ƒç”¨æˆåŠŸ,åˆ™æŠ›å‡ºå¼‚å¸¸
 #define TestWin32Throw(__fun__) do{\
 		DWORD __dw__;\
 		if(!(__fun__)&&(__dw__=GetLastError())) \
 			throw CException(__FILE__,__LINE__,#__fun__,__dw__); \
 	}while(0)
 
-// ²âÊÔWin32 COM API,ÈôÎ´µ÷ÓÃ³É¹¦,ÔòÅ×³öÒì³£
+// æµ‹è¯•Win32 COM API,è‹¥æœªè°ƒç”¨æˆåŠŸ,åˆ™æŠ›å‡ºå¼‚å¸¸
 #define ComThrow(__fun__) do{\
 		HRESULT __hr__ = __fun__; \
 		if(FAILED(__hr__)) \
 			throw CException(__FILE__,__LINE__,#__fun__,(DWORD)__hr__); \
 	}while(0)
 
-// ²âÊÔWaveOut API,ÈôÎ´µ÷ÓÃ³É¹¦,ÔòÅ×³öÒì³£
+// æµ‹è¯•WaveOut API,è‹¥æœªè°ƒç”¨æˆåŠŸ,åˆ™æŠ›å‡ºå¼‚å¸¸
 #define WaveOutThrow(__fun__) do{\
 	MMRESULT __mmResult__ = __fun__; \
 	if(MMSYSERR_NOERROR!=__mmResult__) \
@@ -61,10 +61,10 @@
 /*!
  * \class CException
  *
- * \brief Win32ÓëC±ê×¼´íÎóµÄÒì³£Àà
+ * \brief Win32ä¸Cæ ‡å‡†é”™è¯¯çš„å¼‚å¸¸ç±»
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CException
 {
@@ -80,7 +80,7 @@ public:
 	// Parameter:   const size_t szLine
 	// Parameter:   const char * strFunction
 	// Parameter:   const DWORD dwLastError
-	// Description: ¹¹ÔìWin32Òì³£¶ÔÏó
+	// Description: æ„é€ Win32å¼‚å¸¸å¯¹è±¡
 	//************************************
 	CException(const char* lpFile, const size_t szLine, const char* strFunction, const DWORD dwLastError);
 
@@ -94,7 +94,7 @@ public:
 	// Parameter:   const size_t szLine
 	// Parameter:   const char * strFunction
 	// Parameter:   const errno_t error
-	// Description: ¹¹ÔìC±ê×¼Òì³£¶ÔÏó
+	// Description: æ„é€ Cæ ‡å‡†å¼‚å¸¸å¯¹è±¡
 	//************************************
 	CException(const char* lpFile, const size_t szLine, const char* strFunction, const errno_t error);
 
@@ -108,7 +108,7 @@ public:
 	// Parameter:   const size_t szLine
 	// Parameter:   const char * strFunction
 	// Parameter:   const MMRESULT error
-	// Description: ¹¹ÔìwaveOutÒì³£¶ÔÏó
+	// Description: æ„é€ waveOutå¼‚å¸¸å¯¹è±¡
 	//************************************
 	CException(const char* lpFile, const size_t szLine, const char* strFunction, const MMRESULT error);
 
@@ -122,7 +122,7 @@ public:
 	// Parameter:   const size_t szLine
 	// Parameter:   const char * strFunction
 	// Parameter:   const char * msg
-	// Description: ¹¹ÔìÎÄ±¾ĞÅÏ¢Òì³£¶ÔÏó
+	// Description: æ„é€ æ–‡æœ¬ä¿¡æ¯å¼‚å¸¸å¯¹è±¡
 	//************************************
 	CException(const char* lpFile, const size_t szLine, const char* strFunction, const char* msg);
 
@@ -142,11 +142,11 @@ public:
 	// Access:      public 
 	// Returns:     std::string
 	// Qualifier:   const
-	// Description: ·µ»ØÒì³£×Ö·û´®
+	// Description: è¿”å›å¼‚å¸¸å­—ç¬¦ä¸²
 	//************************************
 	std::string what()const { return m_strErrorMessage; }
 
 private:
-	std::string m_strErrorMessage; // ´¢´æÒì³£×Ö·û´®
+	std::string m_strErrorMessage; // å‚¨å­˜å¼‚å¸¸å­—ç¬¦ä¸²
 };
 

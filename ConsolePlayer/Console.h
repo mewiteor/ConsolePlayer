@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -25,10 +25,10 @@
 /*!
  * \class CConsole
  *
- * \brief ¿ØÖÆÌ¨Àà
+ * \brief æ§åˆ¶å°ç±»
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CConsole
 {
@@ -39,7 +39,7 @@ public:
 	// Access:      private 
 	// Returns:     
 	// Qualifier:  
-	// Description: ¹¹Ôì¿ØÖÆÌ¨¶ÔÏó
+	// Description: æ„é€ æ§åˆ¶å°å¯¹è±¡
 	//************************************
 	CConsole();
 
@@ -49,7 +49,7 @@ public:
 	// Access:      private 
 	// Returns:     
 	// Qualifier:  
-	// Description: Îö¹¹¿ØÖÆÌ¨¶ÔÏó
+	// Description: ææ„æ§åˆ¶å°å¯¹è±¡
 	//************************************
 	~CConsole();
 
@@ -60,7 +60,7 @@ public:
 	// Returns:     DWORD
 	// Qualifier:   const
 	// Parameter:   const WORD * attr
-	// Description: Ğ´ÈëÈ«ÆÁÊôĞÔ
+	// Description: å†™å…¥å…¨å±å±æ€§
 	//************************************
 	DWORD WriteBg(const WORD* attr) const;
 
@@ -70,7 +70,7 @@ public:
 	// Access:      private 
 	// Returns:     const COORD&
 	// Qualifier:   const
-	// Description: ·µ»Ø¿ØÖÆÌ¨µ±Ç°´óĞ¡
+	// Description: è¿”å›æ§åˆ¶å°å½“å‰å¤§å°
 	//************************************
 	const COORD& GetSize()const { return m_crSize; }
 
@@ -81,7 +81,7 @@ public:
 	// Returns:     void
 	// Qualifier:  
 	// Parameter:   COORD cr
-	// Description: ÉèÖÃ¿ØÖÆÌ¨´óĞ¡
+	// Description: è®¾ç½®æ§åˆ¶å°å¤§å°
 	//************************************
 	void  SetSize(COORD cr);
 
@@ -92,7 +92,7 @@ public:
 	// Returns:     void
 	// Qualifier:   const
 	// Parameter:   const COLORREF clrTb[16]
-	// Description: ÉèÖÃ¿ØÖÆÌ¨µÄµ÷É«°å
+	// Description: è®¾ç½®æ§åˆ¶å°çš„è°ƒè‰²æ¿
 	//************************************
 	void  SetColorTable(const COLORREF clrTb[16])  const;
 
@@ -104,7 +104,7 @@ public:
 	// Qualifier:  
 	// Parameter:   const char * format
 	// Parameter:   ...
-	// Description: ÉèÖÃ¸ñÊ½»¯µÄ¿ØÖÆÌ¨±êÌâ
+	// Description: è®¾ç½®æ ¼å¼åŒ–çš„æ§åˆ¶å°æ ‡é¢˜
 	//************************************
 	static int SetTitle(const char* format, ...);
 
@@ -116,24 +116,24 @@ private:
 	// Access:      private 
 	// Returns:     void
 	// Qualifier:  
-	// Description: »ñµÃ¿ØÖÆÌ¨Ò»´Î¿ÉĞ´ÈëµÄ×î´ó¸ß¶È
+	// Description: è·å¾—æ§åˆ¶å°ä¸€æ¬¡å¯å†™å…¥çš„æœ€å¤§é«˜åº¦
 	//************************************
 	void GetMaxHeight();
 
 public:
-	static const COORD m_DEFAULT_FONT_COORD; // ¿ØÖÆÌ¨×ÖÌå´óĞ¡
+	static const COORD m_DEFAULT_FONT_COORD; // æ§åˆ¶å°å­—ä½“å¤§å°
 
 private:
-	HANDLE m_hStdIn,	// ±ê×¼ÊäÈëÁ÷
-		m_hStdOut,		// ±ê×¼Êä³öÁ÷
-		m_hNewOut;		// ĞÂ´´½¨µÄÊä³öÁ÷
-	CONSOLE_SCREEN_BUFFER_INFOEX m_oldCsbiex;	// ¾ÉµÄ¿ØÖÆÌ¨ÆÁÄ»Á÷ĞÅÏ¢µÄ±¸·İ
-	CONSOLE_FONT_INFOEX m_oldCfiex;	// ¾ÉµÄ¿ØÖÆÌ¨×ÖÌåĞÅÏ¢µÄ±¸·İ
-	DWORD m_dwOldShowStatus;	// ¾ÉµÄ¿ØÖÆÌ¨ÏÔÊ¾Ä£Ê½µÄ±¸·İ
-	bool m_bSetCfi,		// ÊÇ·ñÉèÖÃÁËĞÂµÄ¿ØÖÆÌ¨×ÖÌåĞÅÏ¢
-		m_bSetCsbi;		// ÊÇ·ñÉèÖÃÁËĞÂµÄ¿ØÖÆÌ¨ÆÁÄ»Á÷ĞÅÏ¢
-	COORD m_crSize;		// ¿ØÖÆÌ¨µ±Ç°ÆÁÄ»Á÷´óĞ¡
-	DWORD m_dwLength;	// ¿ØÖÆÌ¨ÆÁÄ»Á÷µÄ×Ü³¤¶È(m_crSize.X*m_crSize.Y)
-	SHORT m_nMaxHeight;	// ¿ØÖÆÌ¨Ò»´Î¿ÉĞ´ÈëµÄ×î´ó¸ß¶È
+	HANDLE m_hStdIn,	// æ ‡å‡†è¾“å…¥æµ
+		m_hStdOut,		// æ ‡å‡†è¾“å‡ºæµ
+		m_hNewOut;		// æ–°åˆ›å»ºçš„è¾“å‡ºæµ
+	CONSOLE_SCREEN_BUFFER_INFOEX m_oldCsbiex;	// æ—§çš„æ§åˆ¶å°å±å¹•æµä¿¡æ¯çš„å¤‡ä»½
+	CONSOLE_FONT_INFOEX m_oldCfiex;	// æ—§çš„æ§åˆ¶å°å­—ä½“ä¿¡æ¯çš„å¤‡ä»½
+	DWORD m_dwOldShowStatus;	// æ—§çš„æ§åˆ¶å°æ˜¾ç¤ºæ¨¡å¼çš„å¤‡ä»½
+	bool m_bSetCfi,		// æ˜¯å¦è®¾ç½®äº†æ–°çš„æ§åˆ¶å°å­—ä½“ä¿¡æ¯
+		m_bSetCsbi;		// æ˜¯å¦è®¾ç½®äº†æ–°çš„æ§åˆ¶å°å±å¹•æµä¿¡æ¯
+	COORD m_crSize;		// æ§åˆ¶å°å½“å‰å±å¹•æµå¤§å°
+	DWORD m_dwLength;	// æ§åˆ¶å°å±å¹•æµçš„æ€»é•¿åº¦(m_crSize.X*m_crSize.Y)
+	SHORT m_nMaxHeight;	// æ§åˆ¶å°ä¸€æ¬¡å¯å†™å…¥çš„æœ€å¤§é«˜åº¦
 };
 

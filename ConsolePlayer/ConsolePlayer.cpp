@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -42,7 +42,7 @@ using namespace std;
 //************************************
 void Play(const char* path, ColorType colorType);
 
-// Ä¬ÈÏµ÷É«°å
+// é»˜è®¤è°ƒè‰²æ¿
 COLORREF colorTable[16] =
 {
 	0x00000000,0x00800000,0x00008000,0x00808000,
@@ -79,7 +79,7 @@ int main()
 
 void Play(const char* path, ColorType colorType)
 {
-	CConsole::SetTitle("×¼±¸²¥·Å:%s", path);
+	CConsole::SetTitle("å‡†å¤‡æ’­æ”¾:%s", path);
 	CFFMpeg cff(path);
 	cff.InitVideo();
 	cff.InitAudio();

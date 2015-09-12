@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -88,12 +88,12 @@ void CAudio::Push(unsigned char *buf, size_t len)
 {
 	while (DataFull())
 	{
-		DebugPrint("Âú\n");
+		DebugPrint("æ»¡\n");
 		WaitForSingleObject(m_hNotFullEvent, INFINITE);
 	}
 	memcpy(m_cData[m_dwStart].data, buf, m_cData[m_dwStart].len = len);
 	if (MAX_WAVE_DATA_COUNT == ++m_dwStart)m_dwStart = 0;
-	DebugPrint("Ôö¼Ó:%u:%u:%u\n", m_dwStart, m_dwCur, m_dwEnd);
+	DebugPrint("å¢åŠ :%u:%u:%u\n", m_dwStart, m_dwCur, m_dwEnd);
 	SetEvent(m_hNotEmptyEvent);
 }
 
@@ -117,7 +117,7 @@ DWORD CAudio::AudioThreadProc()
 	{
 		while (m_bContinue&&DataEmpty())
 		{
-			DebugPrint("¿Õ\n");
+			DebugPrint("ç©º\n");
 			WaitForSingleObject(m_hNotEmptyEvent, 100);
 		}
 		if (m_bForce || !m_bContinue && DataEmpty())break;
@@ -126,7 +126,7 @@ DWORD CAudio::AudioThreadProc()
 		{
 			waveOutUnprepareHeader(m_hWaveOut, m_cWaveHdr + m_dwWaveHdrIndex, sizeof(WAVEHDR));
 			if (MAX_WAVE_DATA_COUNT == ++m_dwEnd)m_dwEnd = 0;
-			DebugPrint("¼õĞ¡:%u:%u:%u\n", m_dwStart, m_dwCur, m_dwEnd);
+			DebugPrint("å‡å°:%u:%u:%u\n", m_dwStart, m_dwCur, m_dwEnd);
 			SetEvent(m_hNotFullEvent);
 		}
 		m_cWaveHdr[m_dwWaveHdrIndex].lpData = m_cData[m_dwCur].data;
@@ -141,7 +141,7 @@ DWORD CAudio::AudioThreadProc()
 		waveOutPrepareHeader(m_hWaveOut, m_cWaveHdr + m_dwWaveHdrIndex, sizeof(WAVEHDR));
 		waveOutWrite(m_hWaveOut, m_cWaveHdr + m_dwWaveHdrIndex, sizeof(WAVEHDR));
 		if (MAX_WAVE_DATA_COUNT == ++m_dwCur)m_dwCur = 0;
-		DebugPrint("ÖĞ¼ä:%u:%u:%u\n", m_dwStart, m_dwCur, m_dwEnd);
+		DebugPrint("ä¸­é—´:%u:%u:%u\n", m_dwStart, m_dwCur, m_dwEnd);
 		if (MAX_WAVE_COUNT == ++m_dwWaveHdrIndex)m_dwWaveHdrIndex = 0;
 		InterlockedIncrement(&m_dwCount);
 		while (m_dwCount >= MAX_WAVE_COUNT)WaitForSingleObject(m_hDataEvent, INFINITE);
@@ -159,7 +159,7 @@ void CALLBACK CAudio::waveOutProc(HWAVEOUT hWaveOut, UINT uMsg,
 	if (WOM_DONE == uMsg)
 	{
 		InterlockedDecrement(reinterpret_cast<LPDWORD>
-			((reinterpret_cast<LPWAVEHDR>(dwParam1))->dwUser /* &m_dwCount:µ±Ç°ÕıÔÚ²¥·ÅµÄwaveµÄÊıÁ¿*/));
+			((reinterpret_cast<LPWAVEHDR>(dwParam1))->dwUser /* &m_dwCount:å½“å‰æ­£åœ¨æ’­æ”¾çš„waveçš„æ•°é‡*/));
 		SetEvent(reinterpret_cast<HANDLE>(dwInstance));
 	}
 }

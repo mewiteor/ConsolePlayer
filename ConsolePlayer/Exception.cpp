@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -36,11 +36,11 @@ CException::CException(const char* lpFile, const size_t szLine, const char* strF
 		(char*)&lpMsgBuf,
 		0, NULL);
 	ostringstream oss;
-	oss << "´íÎóÎÄ¼þ£º" << lpFile
-		<< "\n´íÎóÐÐºÅ£º" << szLine
-		<< "\n´íÎóº¯Êý£º" << strFunction
-		<< "\n´íÎóÂë£º" << dwLastError
-		<< "\n´íÎóÐÅÏ¢£º" << lpMsgBuf;
+	oss << "é”™è¯¯æ–‡ä»¶ï¼š" << lpFile
+		<< "\né”™è¯¯è¡Œå·ï¼š" << szLine
+		<< "\né”™è¯¯å‡½æ•°ï¼š" << strFunction
+		<< "\né”™è¯¯ç ï¼š" << dwLastError
+		<< "\né”™è¯¯ä¿¡æ¯ï¼š" << lpMsgBuf;
 	m_strErrorMessage = oss.str();
 	LocalFree(lpMsgBuf);
 }
@@ -50,11 +50,11 @@ CException::CException(const char * lpFile, const size_t szLine, const char * st
 	ostringstream oss;
 	char lpErrMsg[128];
 	strerror_s(lpErrMsg, error);
-	oss << "´íÎóÎÄ¼þ£º" << lpFile
-		<< "\n´íÎóÐÐºÅ£º" << szLine
-		<< "\n´íÎóº¯Êý£º" << strFunction
-		<< "\n´íÎóÂë£º" << error
-		<< "\n´íÎóÐÅÏ¢£º" << lpErrMsg;
+	oss << "é”™è¯¯æ–‡ä»¶ï¼š" << lpFile
+		<< "\né”™è¯¯è¡Œå·ï¼š" << szLine
+		<< "\né”™è¯¯å‡½æ•°ï¼š" << strFunction
+		<< "\né”™è¯¯ç ï¼š" << error
+		<< "\né”™è¯¯ä¿¡æ¯ï¼š" << lpErrMsg;
 	m_strErrorMessage = oss.str();
 }
 
@@ -63,21 +63,21 @@ CException::CException(const char * lpFile, const size_t szLine, const char * st
 	ostringstream oss;
 	char lpErrMsg[256];
 	waveOutGetErrorTextA(error, lpErrMsg, _countof(lpErrMsg));
-	oss << "´íÎóÎÄ¼þ£º" << lpFile
-		<< "\n´íÎóÐÐºÅ£º" << szLine
-		<< "\n´íÎóº¯Êý£º" << strFunction
-		<< "\n´íÎóÂë£º" << error
-		<< "\n´íÎóÐÅÏ¢£º" << lpErrMsg;
+	oss << "é”™è¯¯æ–‡ä»¶ï¼š" << lpFile
+		<< "\né”™è¯¯è¡Œå·ï¼š" << szLine
+		<< "\né”™è¯¯å‡½æ•°ï¼š" << strFunction
+		<< "\né”™è¯¯ç ï¼š" << error
+		<< "\né”™è¯¯ä¿¡æ¯ï¼š" << lpErrMsg;
 	m_strErrorMessage = oss.str();
 }
 
 CException::CException(const char* lpFile, const size_t szLine, const char* strFunction, const char* msg)
 {
 	ostringstream oss;
-	oss << "´íÎóÎÄ¼þ£º" << lpFile
-		<< "\n´íÎóÐÐºÅ£º" << szLine;
+	oss << "é”™è¯¯æ–‡ä»¶ï¼š" << lpFile
+		<< "\né”™è¯¯è¡Œå·ï¼š" << szLine;
 	if (strFunction)
-		oss << "\n´íÎóº¯Êý£º" << strFunction;
-	oss << "\n´íÎóÐÅÏ¢£º" << msg;
+		oss << "\né”™è¯¯å‡½æ•°ï¼š" << strFunction;
+	oss << "\né”™è¯¯ä¿¡æ¯ï¼š" << msg;
 	m_strErrorMessage = oss.str();
 }

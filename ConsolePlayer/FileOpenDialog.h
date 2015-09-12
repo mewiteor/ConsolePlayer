@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -24,10 +24,10 @@
 /*!
  * \class CFileOpenDialog
  *
- * \brief ´ò¿ªÎÄ¼ş¶Ô»°¿ò
+ * \brief æ‰“å¼€æ–‡ä»¶å¯¹è¯æ¡†
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CFileOpenDialog
 {
@@ -59,7 +59,7 @@ public:
 	// Access:      public 
 	// Returns:     bool
 	// Qualifier:  
-	// Description: ÏÔÊ¾ÎÄ¼ş´ò¿ª¶Ô»°¿ò
+	// Description: æ˜¾ç¤ºæ–‡ä»¶æ‰“å¼€å¯¹è¯æ¡†
 	//************************************
 	bool Show();
 
@@ -71,7 +71,7 @@ public:
 	// Qualifier:  
 	// Parameter:   char fileName[MAX_PATH]
 	// Parameter:   ColorType & colorType
-	// Description: »ñÈ¡ÓÃ»§Ñ¡ÔñµÄÎÄ¼şºÍÑÕÉ«Ä£Ê½
+	// Description: è·å–ç”¨æˆ·é€‰æ‹©çš„æ–‡ä»¶å’Œé¢œè‰²æ¨¡å¼
 	//************************************
 	void GetResult(char fileName[MAX_PATH], ColorType& colorType);
 private:

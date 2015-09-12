@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -22,10 +22,10 @@
 /*!
  * \class CFloydSteinberg
  *
- * \brief Floyd SteinbergËã·¨
+ * \brief Floyd Steinbergç®—æ³•
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 class CFloydSteinberg :
 	public CErrorDiffusion
@@ -65,7 +65,7 @@ public:
 	// Parameter:   unsigned char blue
 	// Parameter:   size_t i
 	// Parameter:   COLORREF color
-	// Description: Îó²îÀ©É¢
+	// Description: è¯¯å·®æ‰©æ•£
 	//				| _ * 7 |     
 	//				| 3 5 1 |*1/16
 	//************************************

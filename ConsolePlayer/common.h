@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * copyright (c) 2015 Mewiteor
  *
  * This file is part of ConsolePlayer.
@@ -22,21 +22,21 @@
 /*!
  * \enum ColorType
  *
- * \brief ÑÕÉ«Ä£Ê½Ã¶¾Ù
+ * \brief é¢œè‰²æ¨¡å¼æšä¸¾
  *
  * \author Mewiteor
- * \date ¾ÅÔÂ 2015
+ * \date ä¹æœˆ 2015
  */
 enum ColorType
 {
-	MONO=1002,	// ºÚ°×£¬16¼¶»Ò¶È
-	STANDARD,	// ±ê×¼£¬Ê¹ÓÃ¿ØÖÆÌ¨Ä¬ÈÏµ÷É«°å
-	AUTO		// ×Ô¶¯£¬ÊµÊ±¼ÆËãÖ¡µÄ×îÓÅµ÷É«°å
+	MONO=1002,	// é»‘ç™½ï¼Œ16çº§ç°åº¦
+	STANDARD,	// æ ‡å‡†ï¼Œä½¿ç”¨æ§åˆ¶å°é»˜è®¤è°ƒè‰²æ¿
+	AUTO		// è‡ªåŠ¨ï¼Œå®æ—¶è®¡ç®—å¸§çš„æœ€ä¼˜è°ƒè‰²æ¿
 };
 
 #define MAX_AUDIO_FRAME_SIZE 192000
 
-// ¸ñÊ½»¯Êä³öµ÷ÊÔĞÅÏ¢µ½Êä³ö´°¿Ú
+// æ ¼å¼åŒ–è¾“å‡ºè°ƒè¯•ä¿¡æ¯åˆ°è¾“å‡ºçª—å£
 #ifdef _DEBUG
 #define DebugPrint(fmt,...) _DebugPrint(fmt,__VA_ARGS__)
 #else
@@ -51,6 +51,6 @@ enum ColorType
 // Qualifier:  
 // Parameter:   const char * format
 // Parameter:   ...
-// Description: ¸ñÊ½»¯Êä³öµ÷ÊÔĞÅÏ¢µ½Êä³ö´°¿Ú
+// Description: æ ¼å¼åŒ–è¾“å‡ºè°ƒè¯•ä¿¡æ¯åˆ°è¾“å‡ºçª—å£
 //************************************
 void _DebugPrint(const char* format, ...);
