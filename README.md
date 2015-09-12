@@ -11,4 +11,4 @@
 
 目前此播放器功能仍较简单，除了按ESC键退出外，不支持主要的播放控制功能，这些功能将在后续更新中推出。
 
-项目中使用了FFMPEG，请到[ffmpeg.org](https://www.ffmpeg.org/)下载Previous FFmpeg 32-bit Dev Versions与Previous FFmpeg 32-bit Shared Versions或Previous FFmpeg 64-bit Dev Versions与Previous FFmpeg 64-bit Shared Versions。然后修改项目属性中的VC++目录和调试中的环境设置为相应目录。
+项目中使用了FFmpeg，请到[ffmpeg.org](https://www.ffmpeg.org/)下载Previous FFmpeg 32-bit Dev Versions与Previous FFmpeg 32-bit Shared Versions或Previous FFmpeg 64-bit Dev Versions与Previous FFmpeg 64-bit Shared Versions。然后修改项目属性中的VC++目录和调试中的环境设置为相应目录。
