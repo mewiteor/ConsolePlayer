@@ -177,12 +177,6 @@
     <ClCompile Include="Stucki.cpp" />
     <ClCompile Include="Video.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ConsolePlayer.md" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
