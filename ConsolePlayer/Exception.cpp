@@ -25,59 +25,59 @@ using namespace std;
 
 CException::CException(const char* lpFile, const size_t szLine, const char* strFunction, const DWORD dwLastError)
 {
-	char* lpMsgBuf = nullptr;
-	FormatMessage(
-		FORMAT_MESSAGE_ALLOCATE_BUFFER |
-		FORMAT_MESSAGE_FROM_SYSTEM |
-		FORMAT_MESSAGE_IGNORE_INSERTS,
-		NULL,
-		dwLastError,
-		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-		(char*)&lpMsgBuf,
-		0, NULL);
-	ostringstream oss;
-	oss << "错误文件：" << lpFile
-		<< "\n错误行号：" << szLine
-		<< "\n错误函数：" << strFunction
-		<< "\n错误码：" << dwLastError
-		<< "\n错误信息：" << lpMsgBuf;
-	m_strErrorMessage = oss.str();
-	LocalFree(lpMsgBuf);
+    char* lpMsgBuf = nullptr;
+    FormatMessage(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER |
+        FORMAT_MESSAGE_FROM_SYSTEM |
+        FORMAT_MESSAGE_IGNORE_INSERTS,
+        NULL,
+        dwLastError,
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        (char*)&lpMsgBuf,
+        0, NULL);
+    ostringstream oss;
+    oss << "错误文件：" << lpFile
+        << "\n错误行号：" << szLine
+        << "\n错误函数：" << strFunction
+        << "\n错误码：" << dwLastError
+        << "\n错误信息：" << lpMsgBuf;
+    m_strErrorMessage = oss.str();
+    LocalFree(lpMsgBuf);
 }
 
 CException::CException(const char * lpFile, const size_t szLine, const char * strFunction, const errno_t error)
 {
-	ostringstream oss;
-	char lpErrMsg[128];
-	strerror_s(lpErrMsg, error);
-	oss << "错误文件：" << lpFile
-		<< "\n错误行号：" << szLine
-		<< "\n错误函数：" << strFunction
-		<< "\n错误码：" << error
-		<< "\n错误信息：" << lpErrMsg;
-	m_strErrorMessage = oss.str();
+    ostringstream oss;
+    char lpErrMsg[128];
+    strerror_s(lpErrMsg, error);
+    oss << "错误文件：" << lpFile
+        << "\n错误行号：" << szLine
+        << "\n错误函数：" << strFunction
+        << "\n错误码：" << error
+        << "\n错误信息：" << lpErrMsg;
+    m_strErrorMessage = oss.str();
 }
 
 CException::CException(const char * lpFile, const size_t szLine, const char * strFunction, const MMRESULT error)
 {
-	ostringstream oss;
-	char lpErrMsg[256];
-	waveOutGetErrorTextA(error, lpErrMsg, _countof(lpErrMsg));
-	oss << "错误文件：" << lpFile
-		<< "\n错误行号：" << szLine
-		<< "\n错误函数：" << strFunction
-		<< "\n错误码：" << error
-		<< "\n错误信息：" << lpErrMsg;
-	m_strErrorMessage = oss.str();
+    ostringstream oss;
+    char lpErrMsg[256];
+    waveOutGetErrorTextA(error, lpErrMsg, _countof(lpErrMsg));
+    oss << "错误文件：" << lpFile
+        << "\n错误行号：" << szLine
+        << "\n错误函数：" << strFunction
+        << "\n错误码：" << error
+        << "\n错误信息：" << lpErrMsg;
+    m_strErrorMessage = oss.str();
 }
 
 CException::CException(const char* lpFile, const size_t szLine, const char* strFunction, const char* msg)
 {
-	ostringstream oss;
-	oss << "错误文件：" << lpFile
-		<< "\n错误行号：" << szLine;
-	if (strFunction)
-		oss << "\n错误函数：" << strFunction;
-	oss << "\n错误信息：" << msg;
-	m_strErrorMessage = oss.str();
+    ostringstream oss;
+    oss << "错误文件：" << lpFile
+        << "\n错误行号：" << szLine;
+    if (strFunction)
+        oss << "\n错误函数：" << strFunction;
+    oss << "\n错误信息：" << msg;
+    m_strErrorMessage = oss.str();
 }

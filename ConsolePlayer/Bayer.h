@@ -19,53 +19,53 @@
  */
 #pragma once
 #include "Dither.h"
-/*!
- * \class CBayer
- *
- * \brief Bayer抖动类
- *
- * \author Mewiteor
- * \date 九月 2015
- */
+ /*!
+  * \class CBayer
+  *
+  * \brief Bayer抖动类
+  *
+  * \author Mewiteor
+  * \date 九月 2015
+  */
 class CBayer :
-	public CDither
+    public CDither
 {
 public:
 
-	//************************************
-	// Method:      CBayer
-	// FullName:    CBayer::CBayer
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   unsigned int width
-	// Parameter:   unsigned int height
-	// Description: 构造Bayer抖动对象
-	//************************************
-	CBayer(unsigned int width, unsigned int height);
+    //************************************
+    // Method:      CBayer
+    // FullName:    CBayer::CBayer
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   unsigned int width
+    // Parameter:   unsigned int height
+    // Description: 构造Bayer抖动对象
+    //************************************
+    CBayer(unsigned int width, unsigned int height);
 
-	//************************************
-	// Method:      ~CBayer
-	// FullName:    CBayer::~CBayer
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Description: 析构Bayer抖动对象
-	//************************************
-	~CBayer();
+    //************************************
+    // Method:      ~CBayer
+    // FullName:    CBayer::~CBayer
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Description: 析构Bayer抖动对象
+    //************************************
+    ~CBayer();
 
-	//************************************
-	// Method:      Get
-	// FullName:    CBayer::Get
-	// Access:      public 
-	// Returns:     unsigned char
-	// Qualifier:  
-	// Parameter:   unsigned char alpha,256级灰度值
-	// Parameter:   size_t i,像素在图像中的索引
-	// Description: 返回Bayer抖动后的16级灰度值
-	//************************************
-	unsigned char Get(unsigned char alpha, size_t i);
+    //************************************
+    // Method:      Get
+    // FullName:    CBayer::Get
+    // Access:      public 
+    // Returns:     unsigned char
+    // Qualifier:  
+    // Parameter:   unsigned char alpha,256级灰度值
+    // Parameter:   size_t i,像素在图像中的索引
+    // Description: 返回Bayer抖动后的16级灰度值
+    //************************************
+    unsigned char Get(unsigned char alpha, size_t i);
 private:
-	static const unsigned char m_nM[16];	// Bayer抖动表
+    static const unsigned char m_nM[16];    // Bayer抖动表
 };
 

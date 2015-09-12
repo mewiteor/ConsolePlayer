@@ -19,58 +19,58 @@
  */
 #pragma once
 #include "ErrorDiffusion.h"
-/*!
- * \class CStucki
- *
- * \brief Stucki算法
- *
- * \author Mewiteor
- * \date 九月 2015
- */
+ /*!
+  * \class CStucki
+  *
+  * \brief Stucki算法
+  *
+  * \author Mewiteor
+  * \date 九月 2015
+  */
 class CStucki :
-	public CErrorDiffusion
+    public CErrorDiffusion
 {
 public:
 
-	//************************************
-	// Method:      CStucki
-	// FullName:    CStucki::CStucki
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   unsigned int width
-	// Parameter:   unsigned int height
-	// Description: 
-	//************************************
-	CStucki(unsigned int width, unsigned int height);
+    //************************************
+    // Method:      CStucki
+    // FullName:    CStucki::CStucki
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   unsigned int width
+    // Parameter:   unsigned int height
+    // Description: 
+    //************************************
+    CStucki(unsigned int width, unsigned int height);
 
-	//************************************
-	// Method:      ~CStucki
-	// FullName:    CStucki::~CStucki
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Description: 
-	//************************************
-	~CStucki();
+    //************************************
+    // Method:      ~CStucki
+    // FullName:    CStucki::~CStucki
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Description: 
+    //************************************
+    ~CStucki();
 
-	//************************************
-	// Method:      Diffusion
-	// FullName:    CStucki::Diffusion
-	// Access:      public 
-	// Returns:     void
-	// Qualifier:  
-	// Parameter:   unsigned char red
-	// Parameter:   unsigned char green
-	// Parameter:   unsigned char blue
-	// Parameter:   size_t i
-	// Parameter:   COLORREF color
-	// Description: 误差扩散
-	//				| ___ * 8 4 |
-	//				| 2 4 8 4 2 |*1/42
-	//				| 1 2 4 2 1 |
-	//************************************
-	void Diffusion(unsigned char red, unsigned char green,
-		unsigned char blue, size_t i, COLORREF color);
+    //************************************
+    // Method:      Diffusion
+    // FullName:    CStucki::Diffusion
+    // Access:      public 
+    // Returns:     void
+    // Qualifier:  
+    // Parameter:   unsigned char red
+    // Parameter:   unsigned char green
+    // Parameter:   unsigned char blue
+    // Parameter:   size_t i
+    // Parameter:   COLORREF color
+    // Description: 误差扩散
+    //                  | ___ * 8 4 |
+    //                  | 2 4 8 4 2 |*1/42
+    //                  | 1 2 4 2 1 |
+    //************************************
+    void Diffusion(unsigned char red, unsigned char green,
+        unsigned char blue, size_t i, COLORREF color);
 };
 

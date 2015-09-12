@@ -22,8 +22,8 @@
 
 
 CDither::CDither(unsigned int width, unsigned int height)
-	:m_nWidth(width)
-	,m_nHeight(height)
+    :m_nWidth(width)
+    , m_nHeight(height)
 {
 }
 

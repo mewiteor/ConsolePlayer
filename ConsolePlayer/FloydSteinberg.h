@@ -19,57 +19,57 @@
  */
 #pragma once
 #include "ErrorDiffusion.h"
-/*!
- * \class CFloydSteinberg
- *
- * \brief Floyd Steinberg算法
- *
- * \author Mewiteor
- * \date 九月 2015
- */
+ /*!
+  * \class CFloydSteinberg
+  *
+  * \brief Floyd Steinberg算法
+  *
+  * \author Mewiteor
+  * \date 九月 2015
+  */
 class CFloydSteinberg :
-	public CErrorDiffusion
+    public CErrorDiffusion
 {
 public:
 
-	//************************************
-	// Method:      CFloydSteinberg
-	// FullName:    CFloydSteinberg::CFloydSteinberg
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   unsigned int width
-	// Parameter:   unsigned int height
-	// Description: 
-	//************************************
-	CFloydSteinberg(unsigned int width, unsigned int height);
+    //************************************
+    // Method:      CFloydSteinberg
+    // FullName:    CFloydSteinberg::CFloydSteinberg
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   unsigned int width
+    // Parameter:   unsigned int height
+    // Description: 
+    //************************************
+    CFloydSteinberg(unsigned int width, unsigned int height);
 
-	//************************************
-	// Method:      ~CFloydSteinberg
-	// FullName:    CFloydSteinberg::~CFloydSteinberg
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Description: 
-	//************************************
-	~CFloydSteinberg();
+    //************************************
+    // Method:      ~CFloydSteinberg
+    // FullName:    CFloydSteinberg::~CFloydSteinberg
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Description: 
+    //************************************
+    ~CFloydSteinberg();
 
-	//************************************
-	// Method:      Diffusion
-	// FullName:    CFloydSteinberg::Diffusion
-	// Access:      public 
-	// Returns:     void
-	// Qualifier:  
-	// Parameter:   unsigned char red
-	// Parameter:   unsigned char green
-	// Parameter:   unsigned char blue
-	// Parameter:   size_t i
-	// Parameter:   COLORREF color
-	// Description: 误差扩散
-	//				| _ * 7 |     
-	//				| 3 5 1 |*1/16
-	//************************************
-	void Diffusion(unsigned char red, unsigned char green,
-		unsigned char blue, size_t i, COLORREF color);
+    //************************************
+    // Method:      Diffusion
+    // FullName:    CFloydSteinberg::Diffusion
+    // Access:      public 
+    // Returns:     void
+    // Qualifier:  
+    // Parameter:   unsigned char red
+    // Parameter:   unsigned char green
+    // Parameter:   unsigned char blue
+    // Parameter:   size_t i
+    // Parameter:   COLORREF color
+    // Description: 误差扩散
+    //                  | _ * 7 |     
+    //                  | 3 5 1 |*1/16
+    //************************************
+    void Diffusion(unsigned char red, unsigned char green,
+        unsigned char blue, size_t i, COLORREF color);
 };
 

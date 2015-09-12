@@ -22,7 +22,7 @@
 #include <cerrno>
 #include <Strsafe.h>
 
-// 抛出Win32异常
+ // 抛出Win32异常
 #define Win32Throw(__fun__) throw CException(__FILE__,__LINE__,#__fun__,GetLastError())
 
 // 抛出指定Win32异常
@@ -39,24 +39,24 @@
 
 // 测试Win32API,若未调用成功,则抛出异常
 #define TestWin32Throw(__fun__) do{\
-		DWORD __dw__;\
-		if(!(__fun__)&&(__dw__=GetLastError())) \
-			throw CException(__FILE__,__LINE__,#__fun__,__dw__); \
-	}while(0)
+        DWORD __dw__;\
+        if(!(__fun__)&&(__dw__=GetLastError())) \
+            throw CException(__FILE__,__LINE__,#__fun__,__dw__); \
+    }while(0)
 
 // 测试Win32 COM API,若未调用成功,则抛出异常
 #define ComThrow(__fun__) do{\
-		HRESULT __hr__ = __fun__; \
-		if(FAILED(__hr__)) \
-			throw CException(__FILE__,__LINE__,#__fun__,(DWORD)__hr__); \
-	}while(0)
+        HRESULT __hr__ = __fun__; \
+        if(FAILED(__hr__)) \
+            throw CException(__FILE__,__LINE__,#__fun__,(DWORD)__hr__); \
+    }while(0)
 
 // 测试WaveOut API,若未调用成功,则抛出异常
 #define WaveOutThrow(__fun__) do{\
-	MMRESULT __mmResult__ = __fun__; \
-	if(MMSYSERR_NOERROR!=__mmResult__) \
-		throw CException(__FILE__,__LINE__,#__fun__,__mmResult__); \
-	}while(0)
+    MMRESULT __mmResult__ = __fun__; \
+    if(MMSYSERR_NOERROR!=__mmResult__) \
+        throw CException(__FILE__,__LINE__,#__fun__,__mmResult__); \
+    }while(0)
 
 /*!
  * \class CException
@@ -70,83 +70,83 @@ class CException
 {
 public:
 
-	//************************************
-	// Method:      CException
-	// FullName:    CException::CException
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   const char * lpFile
-	// Parameter:   const size_t szLine
-	// Parameter:   const char * strFunction
-	// Parameter:   const DWORD dwLastError
-	// Description: 构造Win32异常对象
-	//************************************
-	CException(const char* lpFile, const size_t szLine, const char* strFunction, const DWORD dwLastError);
+    //************************************
+    // Method:      CException
+    // FullName:    CException::CException
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   const char * lpFile
+    // Parameter:   const size_t szLine
+    // Parameter:   const char * strFunction
+    // Parameter:   const DWORD dwLastError
+    // Description: 构造Win32异常对象
+    //************************************
+    CException(const char* lpFile, const size_t szLine, const char* strFunction, const DWORD dwLastError);
 
-	//************************************
-	// Method:      CException
-	// FullName:    CException::CException
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   const char * lpFile
-	// Parameter:   const size_t szLine
-	// Parameter:   const char * strFunction
-	// Parameter:   const errno_t error
-	// Description: 构造C标准异常对象
-	//************************************
-	CException(const char* lpFile, const size_t szLine, const char* strFunction, const errno_t error);
+    //************************************
+    // Method:      CException
+    // FullName:    CException::CException
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   const char * lpFile
+    // Parameter:   const size_t szLine
+    // Parameter:   const char * strFunction
+    // Parameter:   const errno_t error
+    // Description: 构造C标准异常对象
+    //************************************
+    CException(const char* lpFile, const size_t szLine, const char* strFunction, const errno_t error);
 
-	//************************************
-	// Method:      CException
-	// FullName:    CException::CException
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   const char * lpFile
-	// Parameter:   const size_t szLine
-	// Parameter:   const char * strFunction
-	// Parameter:   const MMRESULT error
-	// Description: 构造waveOut异常对象
-	//************************************
-	CException(const char* lpFile, const size_t szLine, const char* strFunction, const MMRESULT error);
+    //************************************
+    // Method:      CException
+    // FullName:    CException::CException
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   const char * lpFile
+    // Parameter:   const size_t szLine
+    // Parameter:   const char * strFunction
+    // Parameter:   const MMRESULT error
+    // Description: 构造waveOut异常对象
+    //************************************
+    CException(const char* lpFile, const size_t szLine, const char* strFunction, const MMRESULT error);
 
-	//************************************
-	// Method:      CException
-	// FullName:    CException::CException
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   const char * lpFile
-	// Parameter:   const size_t szLine
-	// Parameter:   const char * strFunction
-	// Parameter:   const char * msg
-	// Description: 构造文本信息异常对象
-	//************************************
-	CException(const char* lpFile, const size_t szLine, const char* strFunction, const char* msg);
+    //************************************
+    // Method:      CException
+    // FullName:    CException::CException
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   const char * lpFile
+    // Parameter:   const size_t szLine
+    // Parameter:   const char * strFunction
+    // Parameter:   const char * msg
+    // Description: 构造文本信息异常对象
+    //************************************
+    CException(const char* lpFile, const size_t szLine, const char* strFunction, const char* msg);
 
-	//************************************
-	// Method:      ~CException
-	// FullName:    CException::~CException
-	// Access:      virtual public 
-	// Returns:     
-	// Qualifier:  
-	// Description: 
-	//************************************
-	~CException() {};
+    //************************************
+    // Method:      ~CException
+    // FullName:    CException::~CException
+    // Access:      virtual public 
+    // Returns:     
+    // Qualifier:  
+    // Description: 
+    //************************************
+    ~CException() {};
 
-	//************************************
-	// Method:      what
-	// FullName:    CException::what
-	// Access:      public 
-	// Returns:     std::string
-	// Qualifier:   const
-	// Description: 返回异常字符串
-	//************************************
-	std::string what()const { return m_strErrorMessage; }
+    //************************************
+    // Method:      what
+    // FullName:    CException::what
+    // Access:      public 
+    // Returns:     std::string
+    // Qualifier:   const
+    // Description: 返回异常字符串
+    //************************************
+    std::string what()const { return m_strErrorMessage; }
 
 private:
-	std::string m_strErrorMessage; // 储存异常字符串
+    std::string m_strErrorMessage; // 储存异常字符串
 };
 

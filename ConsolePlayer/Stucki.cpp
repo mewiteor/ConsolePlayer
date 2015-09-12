@@ -21,7 +21,7 @@
 
 
 CStucki::CStucki(unsigned int width, unsigned int height)
-	:CErrorDiffusion(width,height)
+    :CErrorDiffusion(width, height)
 {
 }
 
@@ -31,36 +31,36 @@ CStucki::~CStucki()
 }
 
 void CStucki::Diffusion(unsigned char red, unsigned char green,
-	unsigned char blue, size_t i, COLORREF color)
+    unsigned char blue, size_t i, COLORREF color)
 {
-	if (!m_clrErrors)return;
-	auto t = (m_clrErrors[i] + COLOR(RGB(red, green, blue)) - COLOR(color)) / 42.0;
-	if (i%m_nWidth != m_nWidth - 1)
-		m_clrErrors[i + 1] += t * 8;
-	if (i%m_nWidth < m_nWidth - 2)
-		m_clrErrors[i + 2] += t * 4;
-	if (i < m_nWidth*(m_nHeight - 1))
-	{
-		if (i%m_nWidth>1)
-			m_clrErrors[i + m_nWidth - 2] += t * 2;
-		if (i%m_nWidth)
-			m_clrErrors[i + m_nWidth - 1] += t * 4;
-		m_clrErrors[i + m_nWidth] += t * 8;
-		if (i%m_nWidth != m_nWidth - 1)
-			m_clrErrors[i + m_nWidth + 1] += t * 4;
-		if (i%m_nWidth < m_nWidth - 2)
-			m_clrErrors[i + m_nWidth + 2] += t * 2;
-	}
-	if (i < m_nWidth*(m_nHeight - 2))
-	{
-		if (i%m_nWidth>1)
-			m_clrErrors[i + m_nWidth - 2] += t;
-		if (i%m_nWidth)
-			m_clrErrors[i + m_nWidth - 1] += t * 2;
-		m_clrErrors[i + m_nWidth] += t * 4;
-		if (i%m_nWidth != m_nWidth - 1)
-			m_clrErrors[i + m_nWidth + 1] += t * 2;
-		if (i%m_nWidth < m_nWidth - 2)
-			m_clrErrors[i + m_nWidth + 2] += t;
-	}
+    if (!m_clrErrors)return;
+    auto t = (m_clrErrors[i] + COLOR(RGB(red, green, blue)) - COLOR(color)) / 42.0;
+    if (i%m_nWidth != m_nWidth - 1)
+        m_clrErrors[i + 1] += t * 8;
+    if (i%m_nWidth < m_nWidth - 2)
+        m_clrErrors[i + 2] += t * 4;
+    if (i < m_nWidth*(m_nHeight - 1))
+    {
+        if (i%m_nWidth>1)
+            m_clrErrors[i + m_nWidth - 2] += t * 2;
+        if (i%m_nWidth)
+            m_clrErrors[i + m_nWidth - 1] += t * 4;
+        m_clrErrors[i + m_nWidth] += t * 8;
+        if (i%m_nWidth != m_nWidth - 1)
+            m_clrErrors[i + m_nWidth + 1] += t * 4;
+        if (i%m_nWidth < m_nWidth - 2)
+            m_clrErrors[i + m_nWidth + 2] += t * 2;
+    }
+    if (i < m_nWidth*(m_nHeight - 2))
+    {
+        if (i%m_nWidth>1)
+            m_clrErrors[i + m_nWidth - 2] += t;
+        if (i%m_nWidth)
+            m_clrErrors[i + m_nWidth - 1] += t * 2;
+        m_clrErrors[i + m_nWidth] += t * 4;
+        if (i%m_nWidth != m_nWidth - 1)
+            m_clrErrors[i + m_nWidth + 1] += t * 2;
+        if (i%m_nWidth < m_nWidth - 2)
+            m_clrErrors[i + m_nWidth + 2] += t;
+    }
 }

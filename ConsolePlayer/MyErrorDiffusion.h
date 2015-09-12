@@ -19,57 +19,57 @@
  */
 #pragma once
 #include"ErrorDiffusion.h"
-/*!
- * \class CMyErrorDiffusion
- *
- * \brief 自己定义的误差扩散算法，适用于3x5的像素
- *
- * \author Mewiteor
- * \date 九月 2015
- */
+ /*!
+  * \class CMyErrorDiffusion
+  *
+  * \brief 自己定义的误差扩散算法，适用于3x5的像素
+  *
+  * \author Mewiteor
+  * \date 九月 2015
+  */
 class CMyErrorDiffusion
-	:public CErrorDiffusion
+    :public CErrorDiffusion
 {
 public:
 
-	//************************************
-	// Method:      CMyErrorDiffusion
-	// FullName:    CMyErrorDiffusion::CMyErrorDiffusion
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Parameter:   unsigned int width
-	// Parameter:   unsigned int height
-	// Description: 
-	//************************************
-	CMyErrorDiffusion(unsigned int width, unsigned int height);
+    //************************************
+    // Method:      CMyErrorDiffusion
+    // FullName:    CMyErrorDiffusion::CMyErrorDiffusion
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Parameter:   unsigned int width
+    // Parameter:   unsigned int height
+    // Description: 
+    //************************************
+    CMyErrorDiffusion(unsigned int width, unsigned int height);
 
-	//************************************
-	// Method:      ~CMyErrorDiffusion
-	// FullName:    CMyErrorDiffusion::~CMyErrorDiffusion
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Description: 
-	//************************************
-	~CMyErrorDiffusion();
+    //************************************
+    // Method:      ~CMyErrorDiffusion
+    // FullName:    CMyErrorDiffusion::~CMyErrorDiffusion
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Description: 
+    //************************************
+    ~CMyErrorDiffusion();
 
-	//************************************
-	// Method:      Diffusion
-	// FullName:    CMyErrorDiffusion::Diffusion
-	// Access:      public 
-	// Returns:     void
-	// Qualifier:  
-	// Parameter:   unsigned char red
-	// Parameter:   unsigned char green
-	// Parameter:   unsigned char blue
-	// Parameter:   size_t i
-	// Parameter:   COLORREF color
-	// Description: 误差扩散
-	//				| ___ * 4 2 |
-	//				| 1 2 6 2 1 |*1/18
-	//************************************
-	void Diffusion(unsigned char red, unsigned char green,
-		unsigned char blue, size_t i, COLORREF color);
+    //************************************
+    // Method:      Diffusion
+    // FullName:    CMyErrorDiffusion::Diffusion
+    // Access:      public 
+    // Returns:     void
+    // Qualifier:  
+    // Parameter:   unsigned char red
+    // Parameter:   unsigned char green
+    // Parameter:   unsigned char blue
+    // Parameter:   size_t i
+    // Parameter:   COLORREF color
+    // Description: 误差扩散
+    //                  | ___ * 4 2 |
+    //                  | 1 2 6 2 1 |*1/18
+    //************************************
+    void Diffusion(unsigned char red, unsigned char green,
+        unsigned char blue, size_t i, COLORREF color);
 };
 

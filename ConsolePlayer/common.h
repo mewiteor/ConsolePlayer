@@ -19,19 +19,19 @@
  */
 #pragma once
 
-/*!
- * \enum ColorType
- *
- * \brief 颜色模式枚举
- *
- * \author Mewiteor
- * \date 九月 2015
- */
+ /*!
+  * \enum ColorType
+  *
+  * \brief 颜色模式枚举
+  *
+  * \author Mewiteor
+  * \date 九月 2015
+  */
 enum ColorType
 {
-	MONO=1002,	// 黑白，16级灰度
-	STANDARD,	// 标准，使用控制台默认调色板
-	AUTO		// 自动，实时计算帧的最优调色板
+    MONO = 1002,	// 黑白，16级灰度
+    STANDARD,	// 标准，使用控制台默认调色板
+    AUTO		// 自动，实时计算帧的最优调色板
 };
 
 #define MAX_AUDIO_FRAME_SIZE 192000

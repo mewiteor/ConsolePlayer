@@ -21,7 +21,7 @@
 
 
 CFloydSteinberg::CFloydSteinberg(unsigned int width, unsigned int height)
-	:CErrorDiffusion(width, height)
+    :CErrorDiffusion(width, height)
 {
 }
 
@@ -32,16 +32,16 @@ CFloydSteinberg::~CFloydSteinberg()
 
 void CFloydSteinberg::Diffusion(unsigned char red, unsigned char green, unsigned char blue, size_t i, COLORREF color)
 {
-	if (!m_clrErrors)return;
-	auto t = (m_clrErrors[i] + COLOR(RGB(red, green, blue)) - COLOR(color)) / 16.0;
-	if (i%m_nWidth != m_nWidth - 1)
-		m_clrErrors[i + 1] += t * 7;
-	if (i < m_nWidth*(m_nHeight - 1))
-	{
-		if (i%m_nWidth)
-			m_clrErrors[i + m_nWidth - 1] += t * 3;
-		m_clrErrors[i + m_nWidth] += t * 5;
-		if (i%m_nWidth != m_nWidth - 1)
-			m_clrErrors[i + m_nWidth + 1] += t;
-	}
+    if (!m_clrErrors)return;
+    auto t = (m_clrErrors[i] + COLOR(RGB(red, green, blue)) - COLOR(color)) / 16.0;
+    if (i%m_nWidth != m_nWidth - 1)
+        m_clrErrors[i + 1] += t * 7;
+    if (i < m_nWidth*(m_nHeight - 1))
+    {
+        if (i%m_nWidth)
+            m_clrErrors[i + m_nWidth - 1] += t * 3;
+        m_clrErrors[i + m_nWidth] += t * 5;
+        if (i%m_nWidth != m_nWidth - 1)
+            m_clrErrors[i + m_nWidth + 1] += t;
+    }
 }

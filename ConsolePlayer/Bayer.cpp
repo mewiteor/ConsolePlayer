@@ -21,14 +21,14 @@
 
 const unsigned char CBayer::m_nM[16] =
 {
-	0,8,2,10,
-	12,4,14,6,
-	3,11,1,9,
-	15,7,13,5
+    0,8,2,10,
+    12,4,14,6,
+    3,11,1,9,
+    15,7,13,5
 };
 
 CBayer::CBayer(unsigned int width, unsigned int height)
-	:CDither(width,height)
+    :CDither(width, height)
 {
 }
 
@@ -39,8 +39,8 @@ CBayer::~CBayer()
 
 unsigned char CBayer::Get(unsigned char alpha, size_t i)
 {
-	auto x = i%m_nWidth, y = i / m_nWidth;
-	auto t = alpha >> 4, r = alpha & 15;
-	if (r > m_nM[(y & 3) << 2 | x & 3] + t)++t;
-	return t << 4 | t;
+    auto x = i%m_nWidth, y = i / m_nWidth;
+    auto t = alpha >> 4, r = alpha & 15;
+    if (r > m_nM[(y & 3) << 2 | x & 3] + t)++t;
+    return t << 4 | t;
 }

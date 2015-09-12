@@ -21,64 +21,64 @@
 #include <windows.h>
 #include "common.h"
 #include <shobjidl.h>
-/*!
- * \class CFileOpenDialog
- *
- * \brief 打开文件对话框
- *
- * \author Mewiteor
- * \date 九月 2015
- */
+ /*!
+  * \class CFileOpenDialog
+  *
+  * \brief 打开文件对话框
+  *
+  * \author Mewiteor
+  * \date 九月 2015
+  */
 class CFileOpenDialog
 {
 public:
 
-	//************************************
-	// Method:      CFileOpenDialog
-	// FullName:    CFileOpenDialog::CFileOpenDialog
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Description: 
-	//************************************
-	CFileOpenDialog();
+    //************************************
+    // Method:      CFileOpenDialog
+    // FullName:    CFileOpenDialog::CFileOpenDialog
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Description: 
+    //************************************
+    CFileOpenDialog();
 
-	//************************************
-	// Method:      ~CFileOpenDialog
-	// FullName:    CFileOpenDialog::~CFileOpenDialog
-	// Access:      public 
-	// Returns:     
-	// Qualifier:  
-	// Description: 
-	//************************************
-	~CFileOpenDialog();
+    //************************************
+    // Method:      ~CFileOpenDialog
+    // FullName:    CFileOpenDialog::~CFileOpenDialog
+    // Access:      public 
+    // Returns:     
+    // Qualifier:  
+    // Description: 
+    //************************************
+    ~CFileOpenDialog();
 
-	//************************************
-	// Method:      Show
-	// FullName:    CFileOpenDialog::Show
-	// Access:      public 
-	// Returns:     bool
-	// Qualifier:  
-	// Description: 显示文件打开对话框
-	//************************************
-	bool Show();
+    //************************************
+    // Method:      Show
+    // FullName:    CFileOpenDialog::Show
+    // Access:      public 
+    // Returns:     bool
+    // Qualifier:  
+    // Description: 显示文件打开对话框
+    //************************************
+    bool Show();
 
-	//************************************
-	// Method:      GetResult
-	// FullName:    CFileOpenDialog::GetResult
-	// Access:      public 
-	// Returns:     void
-	// Qualifier:  
-	// Parameter:   char fileName[MAX_PATH]
-	// Parameter:   ColorType & colorType
-	// Description: 获取用户选择的文件和颜色模式
-	//************************************
-	void GetResult(char fileName[MAX_PATH], ColorType& colorType);
+    //************************************
+    // Method:      GetResult
+    // FullName:    CFileOpenDialog::GetResult
+    // Access:      public 
+    // Returns:     void
+    // Qualifier:  
+    // Parameter:   char fileName[MAX_PATH]
+    // Parameter:   ColorType & colorType
+    // Description: 获取用户选择的文件和颜色模式
+    //************************************
+    void GetResult(char fileName[MAX_PATH], ColorType& colorType);
 private:
-	IFileOpenDialog *m_pFileOpenDialog;
-	IFileDialogCustomize *m_pFileDialogCustomize;
-	IShellItem* m_pShellItem;
-	LPWSTR m_lpFileName;
-	static const DWORD ID_GROUP, ID_RADIOBUTTIONLIST;
+    IFileOpenDialog *m_pFileOpenDialog;
+    IFileDialogCustomize *m_pFileDialogCustomize;
+    IShellItem* m_pShellItem;
+    LPWSTR m_lpFileName;
+    static const DWORD ID_GROUP, ID_RADIOBUTTIONLIST;
 };
 
