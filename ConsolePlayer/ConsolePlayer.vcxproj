@@ -157,6 +157,7 @@
     <ClInclude Include="FileOpenDialog.h" />
     <ClInclude Include="FloydSteinberg.h" />
     <ClInclude Include="MyErrorDiffusion.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Stucki.h" />
     <ClInclude Include="Video.h" />
   </ItemGroup>
@@ -176,6 +177,9 @@
     <ClCompile Include="MyErrorDiffusion.cpp" />
     <ClCompile Include="Stucki.cpp" />
     <ClCompile Include="Video.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ConsolePlayer.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
