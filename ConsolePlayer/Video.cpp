@@ -257,7 +257,7 @@ DWORD CVideo::VideoWriteAttrThread()
         while (m_bContinue&&AttrEmpty())
         {
             DebugPrint("属性空\n");
-            WaitForSingleObject(m_hConvertDataToAttrEvent, INFINITE);
+            WaitForSingleObject(m_hConvertDataToAttrEvent, 100);
         }
         if (m_bForce || (!m_bContinue&&AttrEmpty()))break;
         DWORD end, now = timeGetTime();
