@@ -38,7 +38,6 @@ CFFMpeg::CFFMpeg(const char* path)
     , m_nSampleRate(44100)
     , m_nBitsPerSample(16)
     , m_avSampleFormat(AVSampleFormat::AV_SAMPLE_FMT_S16)
-    , m_nVideoFrameCount(0)
 {
     av_register_all();
     m_pFormatCtx = avformat_alloc_context();
@@ -163,6 +162,8 @@ bool CFFMpeg::ReadFrames(bool(*fnFrameProc)(StreamType, uint8_t*, int, int64_t, 
         del_swr);
     if (au_convert_ctx) swr_init(au_convert_ctx.get());
     size_t skip_times = 0;
+    auto &time_base = m_pFormatCtx->streams[m_nVideoIndex]->time_base;
+    time_base.num *= 1000;
     while (m_pFormatCtx&&pPacket&&pFrame&&av_read_frame(m_pFormatCtx, pPacket.get()) >= 0)
     {
         int got_frame = 0;
@@ -178,10 +179,8 @@ bool CFFMpeg::ReadFrames(bool(*fnFrameProc)(StreamType, uint8_t*, int, int64_t, 
                     auto height = sws_scale(img_convert_ctx.get(), pFrame->data, pFrame->linesize,
                         0, m_pVideoCodecCtx->height, pVideoFrame->data, pVideoFrame->linesize);
                     if (fnFrameProc(StreamType::VIDEO,
-                        pVideoFrame->data[0], pVideoFrame->linesize[0] * height,
-                        m_pVideoCodecCtx->framerate.num
-                        ? m_nVideoFrameCount++ * 1000 * m_pVideoCodecCtx->framerate.den / m_pVideoCodecCtx->framerate.num
-                        : pFrame->best_effort_timestamp,
+                        pVideoFrame->data[0], pVideoFrame->linesize[0] * height, 
+                        pFrame->best_effort_timestamp*time_base.num/ time_base.den,
                         audio, video))return true;
                 }
             }
@@ -208,9 +207,7 @@ bool CFFMpeg::ReadFrames(bool(*fnFrameProc)(StreamType, uint8_t*, int, int64_t, 
             0, m_pVideoCodecCtx->height, pVideoFrame->data, pVideoFrame->linesize);
         if (fnFrameProc(StreamType::VIDEO,
             pVideoFrame->data[0], pVideoFrame->linesize[0] * height,
-            m_pVideoCodecCtx->framerate.num
-            ? m_nVideoFrameCount++ * 1000 * m_pVideoCodecCtx->framerate.den / m_pVideoCodecCtx->framerate.num
-            : pFrame->best_effort_timestamp,
+            pFrame->best_effort_timestamp*time_base.num / time_base.den,
             audio, video))return true;
     }
     return false;

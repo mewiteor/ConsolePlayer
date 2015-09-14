@@ -31,7 +31,7 @@
 #define MY_ERROR_DIFFUSION_MODE 3
 #define CUR_MODE MY_ERROR_DIFFUSION_MODE
 
- //#define CLOSE_DEBUG_PRINT
+#define CLOSE_DEBUG_PRINT
 #ifdef CLOSE_DEBUG_PRINT
 #undef DebugPrint
 #define DebugPrint(fmt,...) 
@@ -185,8 +185,10 @@ DWORD CVideo::VideoColorQuantizationThread()
                 auto err_diff_red = GetRValue(color);
                 auto err_diff_green = GetGValue(color);
                 auto err_diff_blue = GetBValue(color);
-#endif
                 auto attr = Convert24bppTo4bpp(err_diff_red, err_diff_green, err_diff_blue);
+#else
+                auto attr = Convert24bppTo4bpp(red, green, blue);
+#endif
                 m_cAttributes[m_nDataToAttrIndex].attr[i] = attr;
 #if CUR_MODE!=NONO_MODE
                 m_pErrorDiffusion->Diffusion(red, green, blue, i, m_pDefaultColorTable[attr >> 4]);
@@ -225,8 +227,11 @@ DWORD CVideo::VideoColorQuantizationThread()
                 auto err_diff_red = GetRValue(color);
                 auto err_diff_green = GetGValue(color);
                 auto err_diff_blue = GetBValue(color);
-#endif
                 auto attr = m_pColorQuantization->Get(err_diff_red, err_diff_green, err_diff_blue);
+#else
+                auto attr = m_pColorQuantization->Get(red, green, blue);
+
+#endif
                 m_cAttributes[m_nDataToAttrIndex].attr[i] = attr << 4 & 0xf0;
 #if CUR_MODE!=NONO_MODE
                 m_pErrorDiffusion->Diffusion(red, green, blue, i, m_cAttributes[m_nDataToAttrIndex].colorTable[attr]);

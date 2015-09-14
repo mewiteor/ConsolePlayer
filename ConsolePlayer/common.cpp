@@ -25,7 +25,7 @@
 
 void _DebugPrint(const char* format, ...)
 {
-    static char str[1024];
+    char str[1024];
     va_list va;
     va_start(va, format);
     vsprintf_s(str, format, va);

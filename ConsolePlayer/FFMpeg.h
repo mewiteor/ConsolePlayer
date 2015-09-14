@@ -173,6 +173,5 @@ private:
     const int m_nSampleRate, m_nBitsPerSample;
     int m_nChannels;
     const AVSampleFormat m_avSampleFormat;
-    uint64_t m_nVideoFrameCount;
 };
 
