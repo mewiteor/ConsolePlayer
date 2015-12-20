@@ -69,7 +69,7 @@ public:
     // Access:      public 
     // Returns:     void
     // Qualifier:  
-    // Parameter:   char fileName[MAX_PATH]
+    // Parameter:   char fileName[MAX_PATH] , utf-8编码
     // Parameter:   ColorType & colorType
     // Description: 获取用户选择的文件和颜色模式
     //************************************

@@ -24,12 +24,22 @@
 #include "Stucki.h"
 #include "Bayer.h"
 #include "Exception.h"
+#include<Windows.h>
 
 #define NONO_MODE 0
 #define FLOYD_STEINBERG_MODE 1
 #define STUCKI_MODE 2
 #define MY_ERROR_DIFFUSION_MODE 3
 #define CUR_MODE MY_ERROR_DIFFUSION_MODE
+
+#define GRAY(R,G,B) (((R)*156762 + (G)*307757 + (B)*59769) >> 19)
+
+#define CQSYS 1
+#ifdef CQSYS
+#define CQGET SysGet
+#else
+#define CQGET Get
+#endif
 
 #define CLOSE_DEBUG_PRINT
 #ifdef CLOSE_DEBUG_PRINT
@@ -176,12 +186,14 @@ DWORD CVideo::VideoColorQuantizationThread()
 #endif
             for (size_t i = 0; i < m_nLength; ++i)
             {
+                auto width = m_cConsole.GetSize().X;
+                auto index = i / width & 1 ? (1 + i / width)*width - 1 - i%width : i;
                 auto
-                    red = m_cData[m_nDataToAttrIndex].data[i * 3],
-                    green = m_cData[m_nDataToAttrIndex].data[i * 3 + 1],
-                    blue = m_cData[m_nDataToAttrIndex].data[i * 3 + 2];
+                    red = m_cData[m_nDataToAttrIndex].data[index * 3],
+                    green = m_cData[m_nDataToAttrIndex].data[index * 3 + 1],
+                    blue = m_cData[m_nDataToAttrIndex].data[index * 3 + 2];
 #if CUR_MODE!=NONO_MODE
-                auto color = m_pErrorDiffusion->Get(red, green, blue, i);
+                auto color = m_pErrorDiffusion->Get(red, green, blue, index);
                 auto err_diff_red = GetRValue(color);
                 auto err_diff_green = GetGValue(color);
                 auto err_diff_blue = GetBValue(color);
@@ -189,50 +201,53 @@ DWORD CVideo::VideoColorQuantizationThread()
 #else
                 auto attr = Convert24bppTo4bpp(red, green, blue);
 #endif
-                m_cAttributes[m_nDataToAttrIndex].attr[i] = attr;
+                m_cAttributes[m_nDataToAttrIndex].attr[index] = attr;
 #if CUR_MODE!=NONO_MODE
-                m_pErrorDiffusion->Diffusion(red, green, blue, i, m_pDefaultColorTable[attr >> 4]);
+                m_pErrorDiffusion->Diffusion(red, green, blue, index, m_pDefaultColorTable[attr >> 4]);
 #endif
             }
             break;
         case ColorType::MONO:
             for (size_t i = 0; i < m_nLength; ++i)
             {
-                m_cAttributes[m_nDataToAttrIndex].attr[i] = m_pBayer->Get((1 +
-                    m_cData[m_nDataToAttrIndex].data[i * 3] +
-                    m_cData[m_nDataToAttrIndex].data[i * 3 + 1] +
-                    m_cData[m_nDataToAttrIndex].data[i * 3 + 2]
-                    ) / 3, i) & 0xf0;
+                m_cAttributes[m_nDataToAttrIndex].attr[i] = m_pBayer->Get(GRAY(
+                    m_cData[m_nDataToAttrIndex].data[i * 3],
+                    m_cData[m_nDataToAttrIndex].data[i * 3 + 1],
+                    m_cData[m_nDataToAttrIndex].data[i * 3 + 2]), i) & 0xf0;
             }
             break;
         case ColorType::AUTO:
+            uint8_t *data;
+            data = m_cData[m_nDataToAttrIndex].data;
             for (size_t i = 0; i < m_nLength; ++i)
                 m_pColorQuantization->Insert(
-                    m_cData[m_nDataToAttrIndex].data[i * 3],
-                    m_cData[m_nDataToAttrIndex].data[i * 3 + 1],
-                    m_cData[m_nDataToAttrIndex].data[i * 3 + 2]);
+                    data[i * 3],
+                    data[i * 3 + 1],
+                    data[i * 3 + 2]);
             m_pColorQuantization->Done(m_cAttributes[m_nDataToAttrIndex].colorTable);
 #if CUR_MODE!=NONO_MODE
             m_pErrorDiffusion->Init();
 #endif
             for (size_t i = 0; i < m_nLength; ++i)
             {
+                auto width = m_cConsole.GetSize().X;
+                auto index = i / width & 1 ? (1 + i / width)*width - 1 - i%width : i;
                 auto
-                    red = m_cData[m_nDataToAttrIndex].data[i * 3],
-                    green = m_cData[m_nDataToAttrIndex].data[i * 3 + 1],
-                    blue = m_cData[m_nDataToAttrIndex].data[i * 3 + 2];
+                    red = data[index * 3],
+                    green = data[index * 3 + 1],
+                    blue = data[index * 3 + 2];
 #if CUR_MODE!=NONO_MODE
-                auto color = m_pErrorDiffusion->Get(red, green, blue, i);
+                auto color = m_pErrorDiffusion->Get(red, green, blue, index);
 
                 auto err_diff_red = GetRValue(color);
                 auto err_diff_green = GetGValue(color);
                 auto err_diff_blue = GetBValue(color);
-                auto attr = m_pColorQuantization->Get(err_diff_red, err_diff_green, err_diff_blue);
+                auto attr = m_pColorQuantization->CQGET(err_diff_red, err_diff_green, err_diff_blue);
 #else
-                auto attr = m_pColorQuantization->Get(red, green, blue);
+                auto attr = m_pColorQuantization->CQGET(red, green, blue);
 
 #endif
-                m_cAttributes[m_nDataToAttrIndex].attr[i] = attr << 4 & 0xf0;
+                m_cAttributes[m_nDataToAttrIndex].attr[index] = attr << 4 & 0xf0;
 #if CUR_MODE!=NONO_MODE
                 m_pErrorDiffusion->Diffusion(red, green, blue, i, m_cAttributes[m_nDataToAttrIndex].colorTable[attr]);
 #endif
@@ -318,20 +333,23 @@ DWORD CVideo::VideoWriteAttrThread()
 
 WORD CVideo::Convert24bppTo4bpp(short red, short green, short blue)
 {
-    if (red + green + blue >= 0x2a0)return 0xf0;
+    if (red + green + blue >= 0x29F)return 0xf0;
     else if (red <= 0x40 && green <= 0x40 && blue <= 0x40)return 0x00;
-    else if (red <= 0x40 && green <= 0x40 && blue >= 0x40 && blue <= 0xc0)return 0x10;
-    else if (red <= 0x40 && green >= 0x40 && green <= 0xc0 && blue <= 0x40)return 0x20;
-    else if (red >= 0x40 && red <= 0xc0 && green <= 0x40 && blue <= 0x40)return 0x40;
-    else if (green + blue >= 0x180 && green + blue - red >= 0x140 && green + blue - 3 * red >= 0xA0)return 0xb0;
-    else if (red + blue >= 0x180 && red + blue - green >= 0x140 && red + blue - 3 * green >= 0xA0)return 0xd0;
-    else if (red + green >= 0x180 && red + green - blue >= 0x140 && red + green - 3 * blue >= 0xA0)return 0xe0;
+    else if (red <= 0x40 && green <= 0x40 && blue > 0x40 && blue < 0xc0)return 0x10;
+    else if (red <= 0x40 && green > 0x40 && green < 0xc0 && blue <= 0x40)return 0x20;
+    else if (red > 0x40 && red < 0xc0 && green <= 0x40 && blue <= 0x40)return 0x40;
+    else if (red + green + blue >= 0x1e0 &&
+        (red + green - 3 * blue < 0x9F || (red + green - 3 * blue == 0x9F && red + green >= 0x1bf)) &&
+        (red + blue - 3 * green < 0x9F || (red + blue - 3 * green == 0x9F && red + blue >= 0x1bf)) &&
+        (green + blue - 3 * red < 0x9F || (green + blue - 3 * red == 0x9F && green + blue >= 0x1bf)))return 0x70;
+    else if (green + blue >= 0x180 && green + blue - red >= 0x140 && green + blue - 3 * red >= 0x9F)return 0xb0;
+    else if (red + blue >= 0x180 && red + blue - green >= 0x140 && red + blue - 3 * green >= 0x9F)return 0xd0;
+    else if (red + green >= 0x180 && red + green - blue >= 0x140 && red + green - 3 * blue >= 0x9F)return 0xe0;
     else if (blue >= 0xc0 && blue - red >= 0x80 && blue - green >= 0x80 && blue - red - green >= 0x40)return 0x90;
     else if (green >= 0xc0 && green - red >= 0x80 && green - blue >= 0x80 && green - red - blue >= 0x40)return 0xa0;
     else if (red >= 0xc0 && red - green >= 0x80 && red - blue >= 0x80 && red - green - blue >= 0x40)return 0xc0;
-    else if (red <= 0x40 && green >= 0x40 && blue >= 0x40 && green - blue <= 0x80 && blue - green <= 0x80 && green + blue <= 0x180)return 0x30;
-    else if (red >= 0x40 && green <= 0x40 && blue >= 0x40 && red - blue <= 0x80 && blue - red <= 0x80 && red + blue <= 0x180)return 0x50;
-    else if (blue <= 0x40 && green >= 0x40 && red >= 0x40 && green - red <= 0x80 && red - green <= 0x80 && red + green <= 0x180)return 0x60;
-    else if (red + green + blue >= 0x1e0 && red + green - 3 * blue <= 0xA0 && red + blue - 3 * green <= 0xA0 && green + blue - 3 * red <= 0xA0)return 0x70;
+    else if (red <= 0x40 && green > 0x40 && blue > 0x40 && green - blue < 0x80 && blue - green < 0x80 && green + blue < 0x180)return 0x30;
+    else if (green <= 0x40 && red > 0x40 && blue > 0x40 && red - blue < 0x80 && blue - red < 0x80 && red + blue < 0x180)return 0x50;
+    else if (blue <= 0x40 && red > 0x40 && green > 0x40 && green - red < 0x80 && red - green < 0x80 && red + green < 0x180)return 0x60;
     else return 0x80;
 }

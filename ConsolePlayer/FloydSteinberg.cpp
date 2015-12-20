@@ -34,14 +34,30 @@ void CFloydSteinberg::Diffusion(unsigned char red, unsigned char green, unsigned
 {
     if (!m_clrErrors)return;
     auto t = (m_clrErrors[i] + COLOR(RGB(red, green, blue)) - COLOR(color)) / 16.0;
-    if (i%m_nWidth != m_nWidth - 1)
-        m_clrErrors[i + 1] += t * 7;
-    if (i < m_nWidth*(m_nHeight - 1))
+    if (i / m_nWidth & 1)
     {
         if (i%m_nWidth)
-            m_clrErrors[i + m_nWidth - 1] += t * 3;
-        m_clrErrors[i + m_nWidth] += t * 5;
+            m_clrErrors[i - 1] += t * 7;
+        if (i < m_nWidth*(m_nHeight - 1))
+        {
+            if (i%m_nWidth)
+                m_clrErrors[i + m_nWidth - 1] += t;
+            m_clrErrors[i + m_nWidth] += t * 5;
+            if (i%m_nWidth != m_nWidth - 1)
+                m_clrErrors[i + m_nWidth + 1] += t*3;
+        }
+    }
+    else
+    {
         if (i%m_nWidth != m_nWidth - 1)
-            m_clrErrors[i + m_nWidth + 1] += t;
+            m_clrErrors[i + 1] += t * 7;
+        if (i < m_nWidth*(m_nHeight - 1))
+        {
+            if (i%m_nWidth)
+                m_clrErrors[i + m_nWidth - 1] += t * 2;
+            m_clrErrors[i + m_nWidth] += t * 4;
+            if (i%m_nWidth != m_nWidth - 1)
+                m_clrErrors[i + m_nWidth + 1] += t;
+        }
     }
 }

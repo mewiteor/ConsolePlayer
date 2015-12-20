@@ -58,7 +58,7 @@ int main()
         CFileOpenDialog ofd;
         if (ofd.Show())
         {
-            char file_name[MAX_PATH];
+            char file_name[MAX_PATH * 3];
             ColorType colorType;
             ofd.GetResult(file_name, colorType);
             Play(file_name, colorType);

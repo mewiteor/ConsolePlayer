@@ -32,10 +32,20 @@ void CMyErrorDiffusion::Diffusion(unsigned char red, unsigned char green, unsign
 {
     if (!m_clrErrors)return;
     auto t = (m_clrErrors[i] + COLOR(RGB(red, green, blue)) - COLOR(color)) / 18.0;
-    if (i%m_nWidth != m_nWidth - 1)
-        m_clrErrors[i + 1] += t * 4;
-    if (i%m_nWidth < m_nWidth - 2)
-        m_clrErrors[i + 2] += t * 2;
+    if (i / m_nWidth & 1)
+    {
+        if (i%m_nWidth)
+            m_clrErrors[i - 1] += t * 4;
+        if (i%m_nWidth > 1)
+            m_clrErrors[i - 2] += t * 2;
+    }
+    else
+    {
+        if (i%m_nWidth != m_nWidth - 1)
+            m_clrErrors[i + 1] += t * 4;
+        if (i%m_nWidth < m_nWidth - 2)
+            m_clrErrors[i + 2] += t * 2;
+    }
     if (i < m_nWidth*(m_nHeight - 1))
     {
         if (i%m_nWidth>1)

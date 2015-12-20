@@ -35,10 +35,20 @@ void CStucki::Diffusion(unsigned char red, unsigned char green,
 {
     if (!m_clrErrors)return;
     auto t = (m_clrErrors[i] + COLOR(RGB(red, green, blue)) - COLOR(color)) / 42.0;
-    if (i%m_nWidth != m_nWidth - 1)
-        m_clrErrors[i + 1] += t * 8;
-    if (i%m_nWidth < m_nWidth - 2)
-        m_clrErrors[i + 2] += t * 4;
+    if (i / m_nWidth & 1)
+    {
+        if (i%m_nWidth)
+            m_clrErrors[i - 1] += t * 8;
+        if (i%m_nWidth > 1)
+            m_clrErrors[i - 2] += t * 4;
+    }
+    else
+    {
+        if (i%m_nWidth != m_nWidth - 1)
+            m_clrErrors[i + 1] += t * 8;
+        if (i%m_nWidth < m_nWidth - 2)
+            m_clrErrors[i + 2] += t * 4;
+    }
     if (i < m_nWidth*(m_nHeight - 1))
     {
         if (i%m_nWidth>1)

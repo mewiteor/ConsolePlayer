@@ -114,7 +114,7 @@ bool CFileOpenDialog::Show()
     return true;
 }
 
-void CFileOpenDialog::GetResult(char fileName[MAX_PATH], ColorType & colorType)
+void CFileOpenDialog::GetResult(char fileName[MAX_PATH*3], ColorType & colorType)
 {
     if (!m_pFileOpenDialog)return;
     ComThrow(m_pFileOpenDialog->GetResult(&m_pShellItem));
@@ -124,9 +124,9 @@ void CFileOpenDialog::GetResult(char fileName[MAX_PATH], ColorType & colorType)
     if (E_FAIL == hr)throw "未选择颜色模式";
     else if (FAILED(hr)) ThrowWin32Error(m_pFileDialogCustomize->GetSelectedControlItem, hr);
     colorType = (ColorType)dw;
-    ComThrow(WideCharToMultiByte(CP_ACP, 0, m_lpFileName, int(wcslen(m_lpFileName) + 1), fileName, MAX_PATH, NULL, NULL));
-    if(!PathFileExistsA(fileName))
-        throw "文件名中包含Unicode字符,无法打开";
+    if (!PathFileExistsW(m_lpFileName))
+        throw "文件不存在";
+    ComThrow(WideCharToMultiByte(CP_UTF8, 0, m_lpFileName, wcslen(m_lpFileName) + 1, fileName, MAX_PATH * 3, NULL, NULL));
 }
 
 template <class T>

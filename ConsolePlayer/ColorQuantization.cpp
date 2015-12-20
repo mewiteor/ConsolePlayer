@@ -18,8 +18,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 #include "ColorQuantization.h"
+#include "Exception.h"
 
 #include<cstring>
+#include<memory>
 
 CColorQuantization::Node CColorQuantization::m_cNodes[0111111111];
 
@@ -27,20 +29,29 @@ CColorQuantization::CColorQuantization(unsigned int max)
     :m_nColorCount(0)
     , m_nMaxCount(max)
     , m_nDepth(8)
+    ,m_hPalette(nullptr)
 {
     memset(m_cNodes, 0, sizeof(Node));
     m_cNodes[0].leaf = true;
 }
 
+CColorQuantization::~CColorQuantization()
+{
+    if (m_hPalette)
+        DeleteObject(m_hPalette);
+}
+
 void CColorQuantization::Insert(unsigned char red, unsigned char green, unsigned char blue)
 {
     InsertRGB(red, green, blue);
-    while (m_nColorCount > m_nMaxCount)
+    while (m_nColorCount > m_nMaxCount<<3)
         Reduce();
 }
 
 unsigned int CColorQuantization::Done(COLORREF colorTable[16])
 {
+    while (m_nColorCount > m_nMaxCount)
+        Reduce();
     unsigned int index = 0;
     for (const auto &it : m_setLeafParent)
         for (unsigned int i = (it << 3) + 1, j = i + 8; i < j; ++i)
@@ -53,6 +64,20 @@ unsigned int CColorQuantization::Done(COLORREF colorTable[16])
                 m_cNodes[i].index = index;
                 colorTable[index++] = RGB(m_cNodes[i].red, m_cNodes[i].green, m_cNodes[i].blue);
             }
+    if (m_hPalette)DeleteObject(m_hPalette);
+    std::unique_ptr<byte[]> lp(new byte[2 * sizeof(WORD) + index*sizeof(PALETTEENTRY)]);
+    LPLOGPALETTE p = reinterpret_cast<LPLOGPALETTE>(lp.get());
+    p->palVersion = 0x300;
+    p->palNumEntries = index;
+    for (decltype(index) i = 0; i < index; ++i)
+    {
+        p->palPalEntry[i].peRed = GetRValue(colorTable[i]);
+        p->palPalEntry[i].peGreen = GetGValue(colorTable[i]);
+        p->palPalEntry[i].peBlue = GetBValue(colorTable[i]);
+        p->palPalEntry[i].peFlags = 0;
+    }
+    m_hPalette=CreatePalette(p);
+    if (!m_hPalette)Win32Throw(CreatePalette);
     return index;
 }
 
@@ -62,6 +87,14 @@ unsigned int CColorQuantization::Get(unsigned char red, unsigned char green, uns
     for (index = 0; !m_cNodes[index].leaf; red <<= 1, green <<= 1, blue <<= 1)
         index = (index << 3) + 1 + (red >> 7 << 2 | green >> 7 << 1 | blue >> 7);
     return m_cNodes[index].index;
+}
+
+unsigned int CColorQuantization::SysGet(unsigned char red, unsigned char green, unsigned char blue)
+{
+    if (!m_hPalette)ThrowWin32Error(SysGet, ERROR_BAD_ARGUMENTS);
+    auto n = GetNearestPaletteIndex(m_hPalette, RGB(red, green, blue));
+    if (CLR_INVALID == n)Win32Throw(GetNearestPaletteIndex);
+    return n;
 }
 
 void CColorQuantization::InsertRGB(unsigned char red, unsigned char green, unsigned char blue)

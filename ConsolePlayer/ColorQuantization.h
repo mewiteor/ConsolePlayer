@@ -62,7 +62,7 @@ public:
     // Qualifier:  
     // Description: 析构色彩量化对象
     //************************************
-    ~CColorQuantization() {}
+    ~CColorQuantization();
 
     //************************************
     // Method:      Insert
@@ -100,6 +100,19 @@ public:
     // Description: 获取颜色在调色板中的最优索引
     //************************************
     unsigned int Get(unsigned char red, unsigned char green, unsigned char blue);
+
+    //************************************
+    // Method:      SysGet
+    // FullName:    CColorQuantization::SysGet
+    // Access:      public 
+    // Returns:     unsigned int
+    // Qualifier:  
+    // Parameter:   unsigned char red
+    // Parameter:   unsigned char green
+    // Parameter:   unsigned char blue
+    // Description: 
+    //************************************
+    unsigned int SysGet(unsigned char red, unsigned char green, unsigned char blue);
 
 private:
 
@@ -146,5 +159,6 @@ private:
     const unsigned int m_nMaxCount;     // 最多颜色数
     set_type m_setLeafParent;           // 叶子结点的父结点的集合
     unsigned int m_nDepth;              // 堆的当前深度
+    HPALETTE m_hPalette;                // 系统调色板
 };
 
